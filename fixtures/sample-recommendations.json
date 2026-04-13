@@ -1,0 +1,123 @@
+{
+  "generated_at": "2026-04-13T09:00:00Z",
+  "total_estimated_monthly_savings": 3284.60,
+  "recommendations": [
+    {
+      "recommendation_id": "rec-2026-0041",
+      "type": "rightsizing",
+      "estimated_monthly_savings": 842.15,
+      "confidence_score": 0.83,
+      "effort_level": "medium",
+      "risk_level": "low",
+      "priority_score": 0.74,
+      "priority_tier": "P1",
+      "suggested_owner": "team-payments",
+      "recommended_due_date": "2026-05-01",
+      "needs_review": false,
+      "rationale": "CPU p95 below 18% for 14 consecutive days. Downsizing from c7i.4xlarge to c7i.xlarge reduces cost by $842/month with minimal performance risk.",
+      "evidence_refs": [
+        "compute-optimizer://instance/i-0abc123def456",
+        "athena://cost_usage/ec2_utilization_apr2026"
+      ],
+      "resource_id": "i-0abc123def456",
+      "current_instance_type": "c7i.4xlarge",
+      "recommended_instance_type": "c7i.xlarge",
+      "environment": "prod",
+      "account_id": "123456789012"
+    },
+    {
+      "recommendation_id": "rec-2026-0042",
+      "type": "idle",
+      "estimated_monthly_savings": 620.00,
+      "confidence_score": 0.91,
+      "effort_level": "low",
+      "risk_level": "low",
+      "priority_score": 0.71,
+      "priority_tier": "P1",
+      "suggested_owner": "team-platform",
+      "recommended_due_date": "2026-04-25",
+      "needs_review": false,
+      "rationale": "3 RDS instances in staging environment have had 0 connections in the last 21 days. Safe to stop or delete.",
+      "evidence_refs": [
+        "athena://cost_usage/rds_connections_mar2026",
+        "trusted-advisor://check/amazon-rds-idle"
+      ],
+      "resource_ids": [
+        "db-STAGING-PAYMENTS-01",
+        "db-STAGING-ANALYTICS-01",
+        "db-STAGING-AUTH-01"
+      ],
+      "environment": "staging",
+      "account_id": "111122223333"
+    },
+    {
+      "recommendation_id": "rec-2026-0043",
+      "type": "commitment",
+      "estimated_monthly_savings": 1140.00,
+      "confidence_score": 0.78,
+      "effort_level": "low",
+      "risk_level": "low",
+      "priority_score": 0.69,
+      "priority_tier": "P2",
+      "suggested_owner": "finops-lead",
+      "recommended_due_date": "2026-05-15",
+      "needs_review": false,
+      "rationale": "Compute Savings Plan of $8.40/hr (1-year, No Upfront) covers 67% of current On-Demand EC2 spend at a 24% discount rate. Based on 30-day utilization baseline.",
+      "evidence_refs": [
+        "ce://savings-plans-recommendation/sp-2026-0012"
+      ],
+      "plan_type": "ComputeSavingsPlan",
+      "hourly_commitment": 8.40,
+      "term": "1_YEAR",
+      "payment_option": "NO_UPFRONT",
+      "environment": "all",
+      "account_id": "123456789012"
+    },
+    {
+      "recommendation_id": "rec-2026-0044",
+      "type": "tagging",
+      "estimated_monthly_savings": 0,
+      "confidence_score": 0.95,
+      "effort_level": "medium",
+      "risk_level": "low",
+      "priority_score": 0.52,
+      "priority_tier": "P2",
+      "suggested_owner": "team-platform",
+      "recommended_due_date": "2026-05-10",
+      "needs_review": false,
+      "rationale": "18% of EC2 spend ($8,700/month) is missing required tags (product, environment, owner). Untagged spend cannot be allocated to cost centers or used for unit economics calculation.",
+      "evidence_refs": [
+        "athena://cost_usage/untagged_spend_apr2026",
+        "trusted-advisor://check/aws-tagging-untagged-resources"
+      ],
+      "untagged_cost_monthly": 8700.00,
+      "missing_tag_keys": ["product", "environment", "owner"],
+      "affected_resource_count": 34,
+      "environment": "prod",
+      "account_id": "123456789012"
+    },
+    {
+      "recommendation_id": "rec-2026-0045",
+      "type": "rightsizing",
+      "estimated_monthly_savings": 682.45,
+      "confidence_score": 0.72,
+      "effort_level": "high",
+      "risk_level": "medium",
+      "priority_score": 0.48,
+      "priority_tier": "P2",
+      "suggested_owner": "team-analytics",
+      "recommended_due_date": "2026-06-01",
+      "needs_review": false,
+      "rationale": "r6i.8xlarge used for analytics workloads shows memory utilization at 35% p95. Downsizing to r6i.4xlarge saves $682/month. High effort due to memory-intensive batch jobs that require load testing before resize.",
+      "evidence_refs": [
+        "compute-optimizer://instance/i-0ghi345jkl678",
+        "athena://cost_usage/ec2_memory_utilization_apr2026"
+      ],
+      "resource_id": "i-0ghi345jkl678",
+      "current_instance_type": "r6i.8xlarge",
+      "recommended_instance_type": "r6i.4xlarge",
+      "environment": "prod",
+      "account_id": "987654321098"
+    }
+  ]
+}

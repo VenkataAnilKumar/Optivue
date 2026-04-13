@@ -1,0 +1,35 @@
+{
+  "anomaly_id": "an-1042",
+  "start_time": "2026-04-10T00:00:00Z",
+  "end_time": "2026-04-11T23:59:00Z",
+  "impact_amount": 4820.33,
+  "severity": "high",
+  "monitor_scope": "account/123456789012",
+  "root_cause_summary": "EC2 On-Demand compute spike in us-east-1 driven by unplanned Auto Scaling scale-out in the payments-api service.",
+  "likely_drivers": [
+    "Auto Scaling min capacity increased from 4 to 12 on 2026-04-10 at 02:14 UTC",
+    "New c7i.4xlarge instances launched (8 additional instances)",
+    "Scale-in policy did not trigger — no traffic reduction detected"
+  ],
+  "likely_owner": "team-payments",
+  "suggested_next_action": "Review Auto Scaling policy for payments-api. Confirm whether capacity increase was intentional. If not, revert min capacity and investigate trigger.",
+  "data_freshness_timestamp": "2026-04-13T08:00:00Z",
+  "related_resources": [
+    {
+      "resource_id": "i-0abc123def456",
+      "resource_type": "EC2 Instance",
+      "instance_type": "c7i.4xlarge",
+      "region": "us-east-1",
+      "tag_product": "payments-api",
+      "tag_environment": "prod"
+    },
+    {
+      "resource_id": "i-0def789abc012",
+      "resource_type": "EC2 Instance",
+      "instance_type": "c7i.4xlarge",
+      "region": "us-east-1",
+      "tag_product": "payments-api",
+      "tag_environment": "prod"
+    }
+  ]
+}

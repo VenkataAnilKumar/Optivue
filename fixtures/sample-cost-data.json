@@ -1,0 +1,68 @@
+{
+  "query": {
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-13",
+    "granularity": "MONTHLY"
+  },
+  "result": {
+    "total_cost": 48230.17,
+    "currency": "USD",
+    "period": "2026-04-01 to 2026-04-13",
+    "data_freshness_timestamp": "2026-04-13T08:00:00Z",
+    "data_completeness_pct": 98.4,
+    "top_drivers": [
+      {
+        "service": "AmazonEC2",
+        "cost": 21430.55,
+        "percentage": 44.4
+      },
+      {
+        "service": "AmazonRDS",
+        "cost": 9820.30,
+        "percentage": 20.4
+      },
+      {
+        "service": "AmazonS3",
+        "cost": 4210.80,
+        "percentage": 8.7
+      },
+      {
+        "service": "AWSDataTransfer",
+        "cost": 3880.40,
+        "percentage": 8.0
+      },
+      {
+        "service": "AWSLambda",
+        "cost": 2440.12,
+        "percentage": 5.1
+      }
+    ],
+    "by_environment": {
+      "prod": 38540.14,
+      "staging": 7210.03,
+      "dev": 2480.00
+    },
+    "by_account": [
+      {
+        "account_id": "123456789012",
+        "account_name": "prod-payments",
+        "cost": 22100.44
+      },
+      {
+        "account_id": "987654321098",
+        "account_name": "prod-platform",
+        "cost": 16439.70
+      },
+      {
+        "account_id": "111122223333",
+        "account_name": "staging-shared",
+        "cost": 7210.03
+      },
+      {
+        "account_id": "444455556666",
+        "account_name": "dev-shared",
+        "cost": 2480.00
+      }
+    ]
+  }
+}

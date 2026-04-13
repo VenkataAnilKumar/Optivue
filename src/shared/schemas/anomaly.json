@@ -1,0 +1,44 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://finops-agent/schemas/anomaly.json",
+	"title": "Anomaly",
+	"type": "object",
+	"additionalProperties": true,
+	"required": [
+		"anomaly_id",
+		"start_time",
+		"impact_amount",
+		"severity",
+		"root_cause_summary",
+		"likely_drivers",
+		"data_freshness_timestamp"
+	],
+	"properties": {
+		"anomaly_id": { "type": "string" },
+		"start_time": { "type": "string", "format": "date-time" },
+		"end_time": { "type": "string", "format": "date-time" },
+		"impact_amount": { "type": "number", "minimum": 0 },
+		"severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+		"root_cause_summary": { "type": "string" },
+		"likely_drivers": {
+			"type": "array",
+			"items": { "type": "string" }
+		},
+		"likely_owner": { "type": "string" },
+		"root_causes": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"additionalProperties": true,
+				"properties": {
+					"service": { "type": "string" },
+					"region": { "type": "string" },
+					"usage_type": { "type": "string" },
+					"linked_account": { "type": "string" }
+				}
+			}
+		},
+		"data_freshness_timestamp": { "type": "string", "format": "date-time" }
+	}
+}
+

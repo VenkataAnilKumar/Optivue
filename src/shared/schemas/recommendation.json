@@ -1,0 +1,52 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://finops-agent/schemas/recommendation.json",
+	"title": "Recommendation",
+	"type": "object",
+	"additionalProperties": true,
+	"required": [
+		"id",
+		"resource_type",
+		"resource_id",
+		"action_type",
+		"estimated_monthly_savings",
+		"confidence_score",
+		"effort",
+		"risk",
+		"priority_score",
+		"priority_tier",
+		"needs_review",
+		"status",
+		"data_freshness_timestamp"
+	],
+	"properties": {
+		"id": { "type": "string" },
+		"resource_type": { "type": "string" },
+		"resource_id": { "type": "string" },
+		"account_id": { "type": "string" },
+		"region": { "type": "string" },
+		"action_type": {
+			"type": "string",
+			"enum": ["rightsizing", "idle_shutdown", "commitment_purchase", "scaling", "other"]
+		},
+		"title": { "type": "string" },
+		"description": { "type": "string" },
+		"estimated_monthly_savings": { "type": "number", "minimum": 0 },
+		"confidence_score": { "type": "number", "minimum": 0, "maximum": 1 },
+		"effort": { "type": "string", "enum": ["low", "medium", "high"] },
+		"risk": { "type": "string", "enum": ["low", "medium", "high"] },
+		"priority_score": { "type": "number", "minimum": 0, "maximum": 1 },
+		"priority_tier": { "type": "string", "enum": ["P1", "P2", "P3"] },
+		"strategic_alignment_score": { "type": "number", "minimum": 0, "maximum": 1 },
+		"needs_review": { "type": "boolean" },
+		"status": {
+			"type": "string",
+			"enum": ["new", "pending_approval", "approved", "in_progress", "completed", "dismissed"]
+		},
+		"owner": { "type": "string" },
+		"data_freshness_timestamp": { "type": "string", "format": "date-time" },
+		"created_at": { "type": "string", "format": "date-time" },
+		"updated_at": { "type": "string", "format": "date-time" }
+	}
+}
+
