@@ -807,4 +807,5 @@ When FEATURE_EXECUTIVE_SCORECARDS=true:
 | 5 — Eval + Obs | 10–11 | prompts.json, run_eval.py, CloudWatch, kpi_service.py | Safety 100%, P95 ≤ 8s |
 | 6 — Pilot | 12 | README final, CHANGELOG, KPI snapshot | MVP Definition of Done |
 | 7 — Post-MVP | Optional | Feature-flagged expansions | Per-expansion exit criteria |
+| 8 — Deploy + Go-Live | Post-build | `.env.deploy`, CDK outputs, Secrets Manager, Bedrock alias, Cognito users | All 6 stacks live · `/health` 200 · Safety gate 403 · 0 violations |
 

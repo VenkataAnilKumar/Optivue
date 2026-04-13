@@ -303,17 +303,24 @@ Once all 6 CDK stacks are up, confirm every item:
 | Discovery | [Product Brief](docs/01-discovery/01-product-brief.md) · [Open Questions Resolved](docs/01-discovery/02-open-questions-resolved.md) |
 | Definition | [PRD Lite](docs/02-definition/01-prd-lite.md) · [User Stories](docs/02-definition/02-user-stories.md) |
 | Design | [Architecture](docs/03-design/01-architecture-overview.md) · [Agent Instructions](docs/03-design/02-bedrock-agent-instructions.md) · [Action Schemas](docs/03-design/03-action-group-schemas.md) · [DB Schema](docs/03-design/04-database-schema.md) · [Data Contract](docs/03-design/05-data-tool-contract.md) · [Code Reference](docs/03-design/06-code-reference.md) · [Repo Structure](docs/03-design/07-repo-structure.md) |
-| Delivery | [Roadmap](docs/04-delivery/01-implementation-roadmap-phases.md) · [Sprint Plan](docs/04-delivery/02-sprint-plan.md) · [Test Plan](docs/04-delivery/03-test-evaluation-plan.md) · [Demo Script](docs/04-delivery/04-demo-script.md) · [Build Prompts](docs/04-delivery/05-copilot-build-prompts.md) · [**AWS Deploy Runbook**](docs/04-delivery/06-aws-deploy-runbook.md) · [Release Handoff](docs/04-delivery/06-release-handoff.md) |
+| Delivery | [Roadmap](docs/04-delivery/01-implementation-roadmap-phases.md) · [Sprint Plan](docs/04-delivery/02-sprint-plan.md) · [Test Plan](docs/04-delivery/03-test-evaluation-plan.md) · [Demo Script](docs/04-delivery/04-demo-script.md) · [Build Prompts](docs/04-delivery/05-copilot-build-prompts.md) · [**AWS Deploy Runbook**](docs/04-delivery/06-aws-deploy-runbook.md) · [Release Handoff](docs/04-delivery/06-release-handoff.md) · [**Next Phases Roadmap**](docs/04-delivery/07-next-phases-roadmap.md) |
 | Portfolio | [Hiring Manager Summary](docs/05-portfolio/01-hiring-manager-summary.md) · [Resume Bullets](docs/05-portfolio/02-resume-bullet-pack.md) · [Interview Q&A](docs/05-portfolio/03-interview-qa-sheet.md) · [Spoken Scripts](docs/05-portfolio/04-spoken-interview-scripts.md) |
 
 ---
 
 ## What's Next (Post-MVP)
 
-- **Phase 7A** — Bedrock Knowledge Base + RAG over historical cost reports
-- **Phase 7B** — Multi-account support (AWS Organizations)
-- **Phase 7C** — Kubernetes cost allocation (Kubecost integration)
-- **Phase 7D** — SaaS multi-tenant mode with per-org data isolation
+Full detail: [**docs/04-delivery/07-next-phases-roadmap.md**](docs/04-delivery/07-next-phases-roadmap.md)
+
+| Phase | Name | Priority | Key Upgrade |
+|-------|------|----------|-------------|
+| **8** | AWS Deploy + Go-Live | ✅ Done | All 6 CDK stacks · Cognito users · Secrets Manager · Bedrock alias · smoke tests — see [runbook](docs/04-delivery/06-aws-deploy-runbook.md) |
+| **9** | AgentCore Migration + MCP Adoption | P1 | Replace Lambda action groups with **AgentCore Runtime + Strands SDK**; gain 24 pre-built cost tools via AWS Labs Billing + Pricing MCP servers; add 30-day persistent conversation memory |
+| **10** | Multi-Account Org-Level Intelligence | P1 | AWS Organizations scope — cross-account CUR, `account_id` / `ou_path` dimensions, account-scoped RBAC, org-level CPAU / CPT / CPS unit economics |
+| **11** | Commitment Optimization Automation | P1 | Savings Plans + Reserved Instance purchase workflow with `finops-analyst + finance` dual-approval; realized-savings tracking in KPI dashboard |
+| **12** | Shift-Left FinOps — IaC Cost Gates | P2 | GitHub Actions `cost-gate.yml` estimates cost delta on every CDK/Terraform PR; blocks merge if delta exceeds team budget threshold |
+| **13** | Knowledge Base / RAG for Policy Docs | P2 | Bedrock Knowledge Base (OpenSearch Serverless) ingests tagging standards and FinOps runbooks; recommendations cite policy documents |
+| **14** | Multi-Cloud with FOCUS Alignment | P3 | AWS + Azure + GCP unified via [FOCUS spec](https://focus.finops.org/); single Athena table `finops_cost_focus`; cross-cloud anomaly feed |
 
 ---
 

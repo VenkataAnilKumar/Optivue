@@ -1,396 +1,454 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 780" width="1100" height="780">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" width="1200" height="660">
   <defs>
     <style>
-      text { font-family: 'Segoe UI', Arial, sans-serif; }
+      text { font-family: 'Amazon Ember', 'Helvetica Neue', Arial, sans-serif; }
     </style>
-    <!-- Arrow marker -->
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#6b7280"/>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#545B64"/>
     </marker>
-    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#3b82f6"/>
+    <marker id="arr-v" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#7B61FF"/>
     </marker>
-    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#10b981"/>
+    <marker id="arr-r" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#DD344C"/>
     </marker>
-    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#f59e0b"/>
+    <marker id="arr-p" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#E7157B"/>
     </marker>
-
-    <!-- Gradients -->
-    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f8fafc"/>
-      <stop offset="100%" stop-color="#f1f5f9"/>
-    </linearGradient>
-    <linearGradient id="awsOrange" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FF9900"/>
-      <stop offset="100%" stop-color="#e88800"/>
-    </linearGradient>
-    <linearGradient id="bedrockGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#7c3aed"/>
-      <stop offset="100%" stop-color="#6d28d9"/>
-    </linearGradient>
-    <linearGradient id="dataGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0ea5e9"/>
-      <stop offset="100%" stop-color="#0284c7"/>
-    </linearGradient>
-    <linearGradient id="workflowGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#10b981"/>
-      <stop offset="100%" stop-color="#059669"/>
-    </linearGradient>
-    <linearGradient id="dynGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#2563eb"/>
-    </linearGradient>
+    <filter id="sh" x="-5%" y="-5%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0000001A"/>
+    </filter>
   </defs>
 
-  <!-- Background -->
-  <rect width="1100" height="780" fill="url(#bgGrad)" rx="12" stroke="#e2e8f0" stroke-width="1.5"/>
+  <!-- ─── Background ─── -->
+  <rect width="1200" height="660" fill="#FFFFFF"/>
 
-  <!-- Title -->
-  <text x="550" y="34" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">Optivue — AWS Architecture</text>
-  <text x="550" y="52" text-anchor="middle" font-size="11" fill="#64748b">AWS-first · Human-in-the-loop · 6 CDK Stacks · Amazon Bedrock Agents</text>
-  <line x1="60" y1="62" x2="1040" y2="62" stroke="#e2e8f0" stroke-width="1"/>
+  <!-- ─── Title ─── -->
+  <text x="600" y="26" text-anchor="middle" font-size="15" font-weight="700" fill="#16191F">Optivue — FinOps Agent Architecture on AWS</text>
+  <line x1="40" y1="35" x2="1160" y2="35" stroke="#E1E4E8" stroke-width="1"/>
 
-  <!-- ============================================================ -->
-  <!-- LAYER LABELS (left side) -->
-  <!-- ============================================================ -->
-  <text x="14" y="118" font-size="9" fill="#94a3b8" transform="rotate(-90,14,118)" text-anchor="middle">USER</text>
-  <text x="14" y="220" font-size="9" fill="#94a3b8" transform="rotate(-90,14,220)" text-anchor="middle">EDGE</text>
-  <text x="14" y="360" font-size="9" fill="#94a3b8" transform="rotate(-90,14,360)" text-anchor="middle">AI CORE</text>
-  <text x="14" y="530" font-size="9" fill="#94a3b8" transform="rotate(-90,14,530)" text-anchor="middle">DATA</text>
-  <text x="14" y="660" font-size="9" fill="#94a3b8" transform="rotate(-90,14,660)" text-anchor="middle">WORKFLOW</text>
+  <!-- ─── AWS Cloud boundary ─── -->
+  <rect x="106" y="44" width="1086" height="602" rx="8"
+        fill="none" stroke="#AAB7B8" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <rect x="106" y="38" width="78" height="16" fill="#FFFFFF"/>
+  <text x="113" y="50" font-size="9" fill="#FF9900" font-weight="700">▲ AWS Cloud</text>
 
-  <!-- ============================================================ -->
-  <!-- ZONE: USER LAYER -->
-  <!-- ============================================================ -->
-  <rect x="28" y="72" width="1044" height="80" rx="8" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1" stroke-dasharray="4,3"/>
-  <text x="42" y="88" font-size="9" font-weight="600" fill="#0369a1">User Layer</text>
+  <!-- ════════════════════════════════════════
+       USERS  (outside AWS)
+  ════════════════════════════════════════ -->
+  <g id="users">
+    <!-- Analyst -->
+    <circle cx="52" cy="170" r="20" fill="#EBF5FB" stroke="#AAB7B8" stroke-width="1.2"/>
+    <text x="52" y="165" text-anchor="middle" font-size="17">👤</text>
+    <text x="52" y="180" text-anchor="middle" font-size="7" fill="#16191F" font-weight="600">FinOps Analyst</text>
 
-  <!-- Browser -->
-  <rect x="380" y="88" width="130" height="52" rx="8" fill="white" stroke="#0369a1" stroke-width="1.5"/>
-  <text x="445" y="108" text-anchor="middle" font-size="11" font-weight="700" fill="#0369a1">🌐 Browser</text>
-  <text x="445" y="122" text-anchor="middle" font-size="9" fill="#475569">Next.js 15 + Tailwind</text>
-  <text x="445" y="133" text-anchor="middle" font-size="9" fill="#475569">AWS Amplify Hosting</text>
+    <!-- Eng Manager -->
+    <circle cx="52" cy="260" r="20" fill="#EBF5FB" stroke="#AAB7B8" stroke-width="1.2"/>
+    <text x="52" y="255" text-anchor="middle" font-size="17">👤</text>
+    <text x="52" y="270" text-anchor="middle" font-size="7" fill="#16191F" font-weight="600">Eng Manager</text>
 
-  <!-- Role badges -->
-  <rect x="560" y="90" width="90" height="18" rx="9" fill="#dbeafe"/>
-  <text x="605" y="103" text-anchor="middle" font-size="8.5" fill="#1d4ed8">finops-analyst</text>
-  <rect x="658" y="90" width="104" height="18" rx="9" fill="#dcfce7"/>
-  <text x="710" y="103" text-anchor="middle" font-size="8.5" fill="#166534">engineering-manager</text>
-  <rect x="560" y="114" width="56" height="18" rx="9" fill="#fef9c3"/>
-  <text x="588" y="127" text-anchor="middle" font-size="8.5" fill="#854d0e">finance</text>
-  <rect x="622" y="114" width="72" height="18" rx="9" fill="#fae8ff"/>
-  <text x="658" y="127" text-anchor="middle" font-size="8.5" fill="#7e22ce">leadership</text>
+    <!-- Leadership -->
+    <circle cx="52" cy="350" r="20" fill="#EBF5FB" stroke="#AAB7B8" stroke-width="1.2"/>
+    <text x="52" y="345" text-anchor="middle" font-size="17">👤</text>
+    <text x="52" y="360" text-anchor="middle" font-size="7" fill="#16191F" font-weight="600">Finance / Leader</text>
+  </g>
 
-  <!-- ============================================================ -->
-  <!-- ZONE: EDGE LAYER -->
-  <!-- ============================================================ -->
-  <rect x="28" y="162" width="1044" height="82" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1" stroke-dasharray="4,3"/>
-  <text x="42" y="178" font-size="9" font-weight="600" fill="#c2410c">Edge / API Layer</text>
+  <!-- ════════════════════════════════════════
+       ZONE 1 — FRONTEND &amp; AUTH
+  ════════════════════════════════════════ -->
+  <rect x="114" y="52" width="186" height="400" rx="6"
+        fill="#F2F8FD" stroke="#AAB7B8" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="207" y="68" text-anchor="middle" font-size="9" font-weight="600" fill="#545B64">Frontend &amp; Auth</text>
+
+  <!-- Amplify -->
+  <rect x="128" y="78" width="158" height="90" rx="6" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="128" y="78" width="158" height="26" rx="6" fill="#E7157B"/>
+  <rect x="128" y="96" width="158" height="8" fill="#E7157B"/>
+  <text x="207" y="95" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">AWS Amplify</text>
+  <text x="207" y="120" text-anchor="middle" font-size="9" fill="#16191F">Next.js 15 Hosting</text>
+  <text x="207" y="134" text-anchor="middle" font-size="8.5" fill="#545B64">Chat UI · Approval modal</text>
+  <text x="207" y="148" text-anchor="middle" font-size="8.5" fill="#545B64">Role-aware dashboards</text>
 
   <!-- Cognito -->
-  <rect x="60" y="178" width="140" height="54" rx="8" fill="white" stroke="#FF9900" stroke-width="1.5"/>
-  <rect x="60" y="178" width="140" height="18" rx="8" fill="url(#awsOrange)"/>
-  <rect x="60" y="188" width="140" height="8" fill="url(#awsOrange)"/>
-  <text x="130" y="190" text-anchor="middle" font-size="9" font-weight="700" fill="white">Amazon Cognito</text>
-  <text x="130" y="208" text-anchor="middle" font-size="9" fill="#374151">User Pool · 4 Groups</text>
-  <text x="130" y="220" text-anchor="middle" font-size="8" fill="#6b7280">JWT · RS256 · JWKS</text>
+  <rect x="128" y="182" width="158" height="90" rx="6" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="128" y="182" width="158" height="26" rx="6" fill="#DD344C"/>
+  <rect x="128" y="200" width="158" height="8" fill="#DD344C"/>
+  <text x="207" y="199" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Amazon Cognito</text>
+  <text x="207" y="224" text-anchor="middle" font-size="9" fill="#16191F">JWT Auth · 4 Role Groups</text>
+  <text x="207" y="238" text-anchor="middle" font-size="8.5" fill="#545B64">finops-analyst · eng-manager</text>
+  <text x="207" y="252" text-anchor="middle" font-size="8.5" fill="#545B64">finance · leadership</text>
 
   <!-- API Gateway -->
-  <rect x="240" y="178" width="150" height="54" rx="8" fill="white" stroke="#FF9900" stroke-width="1.5"/>
-  <rect x="240" y="178" width="150" height="18" rx="8" fill="url(#awsOrange)"/>
-  <rect x="240" y="188" width="150" height="8" fill="url(#awsOrange)"/>
-  <text x="315" y="190" text-anchor="middle" font-size="9" font-weight="700" fill="white">Amazon API Gateway</text>
-  <text x="315" y="208" text-anchor="middle" font-size="9" fill="#374151">REST · CORS · Auth</text>
-  <text x="315" y="220" text-anchor="middle" font-size="8" fill="#6b7280">/cost /anomalies /recs /actions /kpi</text>
+  <rect x="128" y="286" width="158" height="80" rx="6" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="128" y="286" width="158" height="26" rx="6" fill="#E7157B"/>
+  <rect x="128" y="304" width="158" height="8" fill="#E7157B"/>
+  <text x="207" y="303" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">API Gateway</text>
+  <text x="207" y="328" text-anchor="middle" font-size="9" fill="#16191F">REST API · JWT Authorizer</text>
+  <text x="207" y="342" text-anchor="middle" font-size="8.5" fill="#545B64">/cost  /recs  /actions  /health</text>
+  <text x="207" y="356" text-anchor="middle" font-size="8.5" fill="#545B64">CORS · throttling · WAF-ready</text>
 
-  <!-- Lambda FastAPI -->
-  <rect x="430" y="178" width="160" height="54" rx="8" fill="white" stroke="#FF9900" stroke-width="1.5"/>
-  <rect x="430" y="178" width="160" height="18" rx="8" fill="url(#awsOrange)"/>
-  <rect x="430" y="188" width="160" height="8" fill="url(#awsOrange)"/>
-  <text x="510" y="190" text-anchor="middle" font-size="9" font-weight="700" fill="white">AWS Lambda</text>
-  <text x="510" y="208" text-anchor="middle" font-size="9" fill="#374151">FastAPI + Mangum</text>
-  <text x="510" y="220" text-anchor="middle" font-size="8" fill="#6b7280">Python 3.12 · Routers · Services</text>
+  <!-- ════════════════════════════════════════
+       ZONE 2 — COMPUTE
+  ════════════════════════════════════════ -->
+  <rect x="312" y="52" width="186" height="400" rx="6"
+        fill="#FEF9F0" stroke="#AAB7B8" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="405" y="68" text-anchor="middle" font-size="9" font-weight="600" fill="#545B64">Compute</text>
+
+  <!-- Lambda -->
+  <rect x="326" y="78" width="158" height="104" rx="6" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="326" y="78" width="158" height="26" rx="6" fill="#ED7100"/>
+  <rect x="326" y="96" width="158" height="8" fill="#ED7100"/>
+  <text x="405" y="95" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">AWS Lambda</text>
+  <text x="405" y="120" text-anchor="middle" font-size="9" fill="#16191F">FastAPI · Mangum (ASGI)</text>
+  <text x="405" y="134" text-anchor="middle" font-size="8.5" fill="#545B64">Python 3.12</text>
+  <text x="405" y="148" text-anchor="middle" font-size="8.5" fill="#545B64">Routers · Services · Middleware</text>
+  <text x="405" y="162" text-anchor="middle" font-size="7.5" fill="#879596">IAM least-privilege execution role</text>
+  <text x="405" y="175" text-anchor="middle" font-size="7.5" fill="#879596">Structured JSON logging</text>
 
   <!-- Secrets Manager -->
-  <rect x="630" y="178" width="140" height="54" rx="8" fill="white" stroke="#FF9900" stroke-width="1.5"/>
-  <rect x="630" y="178" width="140" height="18" rx="8" fill="url(#awsOrange)"/>
-  <rect x="630" y="188" width="140" height="8" fill="url(#awsOrange)"/>
-  <text x="700" y="190" text-anchor="middle" font-size="9" font-weight="700" fill="white">Secrets Manager</text>
-  <text x="700" y="208" text-anchor="middle" font-size="9" fill="#374151">finops/jira-api-token</text>
-  <text x="700" y="220" text-anchor="middle" font-size="8" fill="#6b7280">finops/slack-webhook-url</text>
+  <rect x="326" y="196" width="158" height="80" rx="6" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="326" y="196" width="158" height="26" rx="6" fill="#DD344C"/>
+  <rect x="326" y="214" width="158" height="8" fill="#DD344C"/>
+  <text x="405" y="213" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Secrets Manager</text>
+  <text x="405" y="238" text-anchor="middle" font-size="9" fill="#16191F">Zero plaintext credentials</text>
+  <text x="405" y="252" text-anchor="middle" font-size="8.5" fill="#545B64">finops/jira-api-token</text>
+  <text x="405" y="266" text-anchor="middle" font-size="8.5" fill="#545B64">finops/slack-webhook-url</text>
 
   <!-- CloudWatch -->
-  <rect x="810" y="178" width="130" height="54" rx="8" fill="white" stroke="#FF9900" stroke-width="1.5"/>
-  <rect x="810" y="178" width="130" height="18" rx="8" fill="url(#awsOrange)"/>
-  <rect x="810" y="188" width="130" height="8" fill="url(#awsOrange)"/>
-  <text x="875" y="190" text-anchor="middle" font-size="9" font-weight="700" fill="white">CloudWatch</text>
-  <text x="875" y="208" text-anchor="middle" font-size="9" fill="#374151">Logs · Metrics · Traces</text>
-  <text x="875" y="220" text-anchor="middle" font-size="8" fill="#6b7280">Structured JSON + Correlation ID</text>
+  <rect x="326" y="290" width="158" height="80" rx="6" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="326" y="290" width="158" height="26" rx="6" fill="#E7157B"/>
+  <rect x="326" y="308" width="158" height="8" fill="#E7157B"/>
+  <text x="405" y="307" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Amazon CloudWatch</text>
+  <text x="405" y="332" text-anchor="middle" font-size="9" fill="#16191F">Logs · Metrics · Traces</text>
+  <text x="405" y="346" text-anchor="middle" font-size="8.5" fill="#545B64">Bedrock trace logging</text>
+  <text x="405" y="360" text-anchor="middle" font-size="8.5" fill="#545B64">Correlation IDs · JSON logs</text>
 
-  <!-- ============================================================ -->
-  <!-- ZONE: AI CORE -->
-  <!-- ============================================================ -->
-  <rect x="28" y="254" width="1044" height="210" rx="8" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1" stroke-dasharray="4,3"/>
-  <text x="42" y="270" font-size="9" font-weight="600" fill="#7c3aed">AI Core — Amazon Bedrock Agents</text>
+  <!-- ════════════════════════════════════════
+       ZONE 3 — BEDROCK AGENTS
+  ════════════════════════════════════════ -->
+  <rect x="510" y="52" width="310" height="400" rx="6"
+        fill="#F0EEFF" stroke="#7B61FF" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="665" y="68" text-anchor="middle" font-size="9" font-weight="700" fill="#7B61FF">Amazon Bedrock Agents</text>
 
-  <!-- Supervisor Agent -->
-  <rect x="60" y="276" width="180" height="170" rx="8" fill="white" stroke="#7c3aed" stroke-width="2"/>
-  <rect x="60" y="276" width="180" height="22" rx="8" fill="url(#bedrockGrad)"/>
-  <rect x="60" y="289" width="180" height="9" fill="url(#bedrockGrad)"/>
-  <text x="150" y="291" text-anchor="middle" font-size="9.5" font-weight="700" fill="white">finops-supervisor</text>
-  <text x="150" y="310" text-anchor="middle" font-size="8.5" fill="#4b5563">Amazon Bedrock Agent</text>
-  <text x="150" y="323" text-anchor="middle" font-size="8" fill="#6b7280">Claude 3 Sonnet</text>
-  <text x="150" y="338" text-anchor="middle" font-size="8" fill="#6b7280">Routes to specialist agents</text>
-  <text x="150" y="352" text-anchor="middle" font-size="8" fill="#6b7280">Role-aware output filtering</text>
-  <text x="150" y="366" text-anchor="middle" font-size="8" fill="#6b7280">Grounded responses only</text>
-  <text x="150" y="381" text-anchor="middle" font-size="8" fill="#6b7280">Approval gate enforcement</text>
-  <text x="150" y="396" text-anchor="middle" font-size="8" fill="#6b7280">No hallucinated $ amounts</text>
-  <text x="150" y="414" text-anchor="middle" font-size="8" fill="#9333ea">TSTALIASID → prod alias</text>
+  <!-- Supervisor -->
+  <rect x="524" y="78" width="282" height="90" rx="6" fill="#fff" stroke="#7B61FF" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="524" y="78" width="282" height="26" rx="6" fill="#7B61FF"/>
+  <rect x="524" y="96" width="282" height="8" fill="#7B61FF"/>
+  <text x="665" y="95" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Supervisor Agent — finops-supervisor</text>
+  <text x="665" y="120" text-anchor="middle" font-size="9" fill="#16191F">Claude 3 Sonnet · Multi-agent orchestrator</text>
+  <text x="665" y="134" text-anchor="middle" font-size="8.5" fill="#545B64">Routes queries to specialist agents · Role-aware output</text>
+  <text x="665" y="148" text-anchor="middle" font-size="8.5" fill="#545B64">Grounded on tool data · No hallucinated dollar amounts</text>
 
-  <!-- Cost Analysis Agent -->
-  <rect x="290" y="276" width="210" height="170" rx="8" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
-  <rect x="290" y="276" width="210" height="22" rx="8" fill="#8b5cf6"/>
-  <rect x="290" y="289" width="210" height="9" fill="#8b5cf6"/>
-  <text x="395" y="291" text-anchor="middle" font-size="9.5" font-weight="700" fill="white">cost-analysis-agent</text>
-  <text x="395" y="311" text-anchor="middle" font-size="8.5" font-weight="600" fill="#374151">Action Group Tools:</text>
-  <text x="395" y="325" text-anchor="middle" font-size="8" fill="#6b7280">get_cost_by_period → Athena</text>
-  <text x="395" y="338" text-anchor="middle" font-size="8" fill="#6b7280">get_anomaly_explanation → Cost AD</text>
-  <text x="395" y="351" text-anchor="middle" font-size="8" fill="#6b7280">get_budget_variance → Budgets</text>
-  <text x="395" y="364" text-anchor="middle" font-size="8" fill="#6b7280">get_forecast → Cost Explorer</text>
-  <line x1="305" y1="372" x2="485" y2="372" stroke="#e5e7eb" stroke-width="1"/>
-  <text x="395" y="385" text-anchor="middle" font-size="8" fill="#4b5563">data_freshness_timestamp</text>
-  <text x="395" y="398" text-anchor="middle" font-size="8" fill="#4b5563">on every response</text>
-  <text x="395" y="414" text-anchor="middle" font-size="8" fill="#9333ea">adapters/cost/</text>
+  <!-- Specialist label -->
+  <text x="665" y="186" text-anchor="middle" font-size="8" fill="#7B61FF" font-weight="600">Sub-agents  (specialist action groups)</text>
 
-  <!-- Optimization Agent -->
-  <rect x="550" y="276" width="210" height="170" rx="8" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
-  <rect x="550" y="276" width="210" height="22" rx="8" fill="#8b5cf6"/>
-  <rect x="550" y="289" width="210" height="9" fill="#8b5cf6"/>
-  <text x="655" y="291" text-anchor="middle" font-size="9.5" font-weight="700" fill="white">optimization-agent</text>
-  <text x="655" y="311" text-anchor="middle" font-size="8.5" font-weight="600" fill="#374151">Action Group Tools:</text>
-  <text x="655" y="325" text-anchor="middle" font-size="8" fill="#6b7280">get_recommendations → Compute Opt</text>
-  <text x="655" y="338" text-anchor="middle" font-size="8" fill="#6b7280">get_commitment_opportunities → SP API</text>
-  <text x="655" y="351" text-anchor="middle" font-size="8" fill="#6b7280">get_idle_resources → Athena heuristic</text>
-  <line x1="565" y1="360" x2="745" y2="360" stroke="#e5e7eb" stroke-width="1"/>
-  <text x="655" y="373" text-anchor="middle" font-size="8" fill="#4b5563">priority_score formula</text>
-  <text x="655" y="386" text-anchor="middle" font-size="8" fill="#4b5563">P1 ≥ 0.70 · P2 0.40–0.69 · P3 &lt; 0.40</text>
-  <text x="655" y="399" text-anchor="middle" font-size="8" fill="#4b5563">needs_review if confidence &lt; 0.70</text>
-  <text x="655" y="414" text-anchor="middle" font-size="8" fill="#9333ea">adapters/optimization/</text>
+  <!-- cost-analysis sub-agent -->
+  <rect x="524" y="194" width="86" height="240" rx="5" fill="#EDE7FF" stroke="#7B61FF" stroke-width="1"/>
+  <rect x="524" y="194" width="86" height="22" rx="5" fill="#7B61FF"/>
+  <rect x="524" y="209" width="86" height="7" fill="#7B61FF"/>
+  <text x="567" y="209" text-anchor="middle" font-size="8" font-weight="700" fill="#fff">cost-analysis</text>
+  <text x="567" y="232" text-anchor="middle" font-size="7.5" fill="#16191F" font-weight="600">Action Groups</text>
+  <text x="567" y="247" text-anchor="middle" font-size="7" fill="#545B64">cost_by_period</text>
+  <text x="567" y="260" text-anchor="middle" font-size="7" fill="#545B64">anomaly_explain</text>
+  <text x="567" y="273" text-anchor="middle" font-size="7" fill="#545B64">budget_variance</text>
+  <text x="567" y="286" text-anchor="middle" font-size="7" fill="#545B64">forecast</text>
+  <line x1="530" y1="297" x2="604" y2="297" stroke="#C3AFF7" stroke-width="0.5"/>
+  <text x="567" y="311" text-anchor="middle" font-size="6.5" fill="#879596">Athena queries</text>
+  <text x="567" y="323" text-anchor="middle" font-size="6.5" fill="#879596">Cost Explorer API</text>
+  <text x="567" y="335" text-anchor="middle" font-size="6.5" fill="#879596">Budgets API</text>
+  <text x="567" y="347" text-anchor="middle" font-size="6.5" fill="#879596">Cost Anomaly</text>
+  <text x="567" y="359" text-anchor="middle" font-size="6.5" fill="#879596">Detection</text>
+  <line x1="530" y1="368" x2="604" y2="368" stroke="#C3AFF7" stroke-width="0.5"/>
+  <text x="567" y="382" text-anchor="middle" font-size="6.5" fill="#7B61FF">data_freshness</text>
+  <text x="567" y="394" text-anchor="middle" font-size="6.5" fill="#7B61FF">on every call</text>
+  <text x="567" y="407" text-anchor="middle" font-size="6.5" fill="#7B61FF">DEMO_MODE=true</text>
+  <text x="567" y="419" text-anchor="middle" font-size="6.5" fill="#7B61FF">→ fixtures/</text>
 
-  <!-- Governance Agent -->
-  <rect x="810" y="276" width="210" height="170" rx="8" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
-  <rect x="810" y="276" width="210" height="22" rx="8" fill="#8b5cf6"/>
-  <rect x="810" y="289" width="210" height="9" fill="#8b5cf6"/>
-  <text x="915" y="291" text-anchor="middle" font-size="9.5" font-weight="700" fill="white">governance-agent</text>
-  <text x="915" y="311" text-anchor="middle" font-size="8.5" font-weight="600" fill="#374151">Action Group Tools:</text>
-  <text x="915" y="325" text-anchor="middle" font-size="8" fill="#6b7280">evaluate_action_risk → policy rules</text>
-  <text x="915" y="338" text-anchor="middle" font-size="8" fill="#6b7280">request_approval → DynamoDB</text>
-  <text x="915" y="351" text-anchor="middle" font-size="8" fill="#6b7280">check_tag_compliance → Athena</text>
-  <line x1="825" y1="360" x2="1005" y2="360" stroke="#e5e7eb" stroke-width="1"/>
-  <text x="915" y="373" text-anchor="middle" font-size="8" fill="#4b5563">policy_blocked for prod deletions</text>
-  <text x="915" y="386" text-anchor="middle" font-size="8" fill="#4b5563">dual-approval prod · 4-hr token TTL</text>
-  <text x="915" y="399" text-anchor="middle" font-size="8" fill="#4b5563">safety violations: 0 (hard req)</text>
-  <text x="915" y="414" text-anchor="middle" font-size="8" fill="#9333ea">adapters/governance/</text>
+  <!-- optimization sub-agent -->
+  <rect x="622" y="194" width="86" height="240" rx="5" fill="#EDE7FF" stroke="#7B61FF" stroke-width="1"/>
+  <rect x="622" y="194" width="86" height="22" rx="5" fill="#7B61FF"/>
+  <rect x="622" y="209" width="86" height="7" fill="#7B61FF"/>
+  <text x="665" y="209" text-anchor="middle" font-size="8" font-weight="700" fill="#fff">optimization</text>
+  <text x="665" y="232" text-anchor="middle" font-size="7.5" fill="#16191F" font-weight="600">Action Groups</text>
+  <text x="665" y="247" text-anchor="middle" font-size="7" fill="#545B64">recommendations</text>
+  <text x="665" y="260" text-anchor="middle" font-size="7" fill="#545B64">commitments</text>
+  <text x="665" y="273" text-anchor="middle" font-size="7" fill="#545B64">idle_resources</text>
+  <line x1="628" y1="284" x2="702" y2="284" stroke="#C3AFF7" stroke-width="0.5"/>
+  <text x="665" y="298" text-anchor="middle" font-size="6.5" fill="#879596">Compute Optimizer</text>
+  <text x="665" y="310" text-anchor="middle" font-size="6.5" fill="#879596">Trusted Advisor</text>
+  <text x="665" y="322" text-anchor="middle" font-size="6.5" fill="#879596">Savings Plans API</text>
+  <line x1="628" y1="334" x2="702" y2="334" stroke="#C3AFF7" stroke-width="0.5"/>
+  <text x="665" y="348" text-anchor="middle" font-size="6.5" fill="#7B61FF">P1/P2/P3 scoring</text>
+  <text x="665" y="360" text-anchor="middle" font-size="6.5" fill="#7B61FF">confidence ≥ 0.70</text>
+  <text x="665" y="372" text-anchor="middle" font-size="6.5" fill="#7B61FF">auto-route threshold</text>
+  <text x="665" y="384" text-anchor="middle" font-size="6.5" fill="#7B61FF">priority_score formula:</text>
+  <text x="665" y="396" text-anchor="middle" font-size="6" fill="#879596">savings×.35+conf×.20</text>
+  <text x="665" y="408" text-anchor="middle" font-size="6" fill="#879596">+effort×.20+risk×.15</text>
+  <text x="665" y="420" text-anchor="middle" font-size="6" fill="#879596">+strategy×.10</text>
 
-  <!-- ============================================================ -->
-  <!-- ZONE: DATA LAYER -->
-  <!-- ============================================================ -->
-  <rect x="28" y="474" width="1044" height="116" rx="8" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1" stroke-dasharray="4,3"/>
-  <text x="42" y="490" font-size="9" font-weight="600" fill="#0369a1">Data Layer</text>
+  <!-- governance sub-agent -->
+  <rect x="720" y="194" width="86" height="240" rx="5" fill="#EDE7FF" stroke="#7B61FF" stroke-width="1"/>
+  <rect x="720" y="194" width="86" height="22" rx="5" fill="#7B61FF"/>
+  <rect x="720" y="209" width="86" height="7" fill="#7B61FF"/>
+  <text x="763" y="209" text-anchor="middle" font-size="8" font-weight="700" fill="#fff">governance</text>
+  <text x="763" y="232" text-anchor="middle" font-size="7.5" fill="#16191F" font-weight="600">Action Groups</text>
+  <text x="763" y="247" text-anchor="middle" font-size="7" fill="#545B64">evaluate_risk</text>
+  <text x="763" y="260" text-anchor="middle" font-size="7" fill="#545B64">request_approval</text>
+  <text x="763" y="273" text-anchor="middle" font-size="7" fill="#545B64">tag_compliance</text>
+  <line x1="726" y1="284" x2="800" y2="284" stroke="#C3AFF7" stroke-width="0.5"/>
+  <text x="763" y="298" text-anchor="middle" font-size="6.5" fill="#879596">DynamoDB approvals</text>
+  <text x="763" y="310" text-anchor="middle" font-size="6.5" fill="#879596">Policy rules engine</text>
+  <line x1="726" y1="322" x2="800" y2="322" stroke="#C3AFF7" stroke-width="0.5"/>
+  <text x="763" y="336" text-anchor="middle" font-size="6.5" fill="#DD344C" font-weight="600">dual-approval (prod)</text>
+  <text x="763" y="348" text-anchor="middle" font-size="6.5" fill="#DD344C">4-hr token TTL</text>
+  <text x="763" y="360" text-anchor="middle" font-size="6.5" fill="#DD344C">policy_blocked</text>
+  <text x="763" y="372" text-anchor="middle" font-size="6.5" fill="#DD344C">on prod delete</text>
+  <line x1="726" y1="384" x2="800" y2="384" stroke="#C3AFF7" stroke-width="0.5"/>
+  <text x="763" y="398" text-anchor="middle" font-size="6.5" fill="#DD344C" font-weight="600">0 safety violations</text>
+  <text x="763" y="410" text-anchor="middle" font-size="6.5" fill="#DD344C">hard requirement</text>
 
-  <!-- CUR/S3 -->
-  <rect x="60" y="494" width="150" height="84" rx="8" fill="white" stroke="#0ea5e9" stroke-width="1.5"/>
-  <rect x="60" y="494" width="150" height="20" rx="8" fill="url(#dataGrad)"/>
-  <rect x="60" y="505" width="150" height="9" fill="url(#dataGrad)"/>
-  <text x="135" y="508" text-anchor="middle" font-size="9" font-weight="700" fill="white">Amazon S3</text>
-  <text x="135" y="526" text-anchor="middle" font-size="8.5" fill="#374151">AWS Data Exports / CUR</text>
-  <text x="135" y="539" text-anchor="middle" font-size="8" fill="#6b7280">cost_export_bucket</text>
-  <text x="135" y="552" text-anchor="middle" font-size="8" fill="#6b7280">athena_results_bucket</text>
-  <text x="135" y="566" text-anchor="middle" font-size="8" fill="#6b7280">FOCUS-aligned schema</text>
+  <!-- ════════════════════════════════════════
+       ZONE 4 — DATA &amp; ANALYTICS
+  ════════════════════════════════════════ -->
+  <rect x="832" y="52" width="358" height="230" rx="6"
+        fill="#F2FDF4" stroke="#AAB7B8" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="1011" y="68" text-anchor="middle" font-size="9" font-weight="600" fill="#545B64">Data &amp; Analytics</text>
+
+  <!-- S3 -->
+  <rect x="848" y="78" width="100" height="86" rx="5" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="848" y="78" width="100" height="24" rx="5" fill="#3F8624"/>
+  <rect x="848" y="94" width="100" height="8" fill="#3F8624"/>
+  <text x="898" y="94" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff">Amazon S3</text>
+  <text x="898" y="118" text-anchor="middle" font-size="8.5" fill="#16191F">CUR / Data Exports</text>
+  <text x="898" y="132" text-anchor="middle" font-size="7.5" fill="#545B64">cost_export_bucket</text>
+  <text x="898" y="145" text-anchor="middle" font-size="7.5" fill="#545B64">athena_results_bucket</text>
 
   <!-- Glue -->
-  <rect x="240" y="494" width="130" height="84" rx="8" fill="white" stroke="#0ea5e9" stroke-width="1.5"/>
-  <rect x="240" y="494" width="130" height="20" rx="8" fill="url(#dataGrad)"/>
-  <rect x="240" y="505" width="130" height="9" fill="url(#dataGrad)"/>
-  <text x="305" y="508" text-anchor="middle" font-size="9" font-weight="700" fill="white">AWS Glue</text>
-  <text x="305" y="526" text-anchor="middle" font-size="8.5" fill="#374151">Database Catalog</text>
-  <text x="305" y="539" text-anchor="middle" font-size="8" fill="#6b7280">finops_cost_db</text>
-  <text x="305" y="552" text-anchor="middle" font-size="8" fill="#6b7280">cost_and_usage table</text>
+  <rect x="960" y="78" width="100" height="86" rx="5" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="960" y="78" width="100" height="24" rx="5" fill="#8C4FFF"/>
+  <rect x="960" y="94" width="100" height="8" fill="#8C4FFF"/>
+  <text x="1010" y="94" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff">AWS Glue</text>
+  <text x="1010" y="118" text-anchor="middle" font-size="8.5" fill="#16191F">Data Catalog</text>
+  <text x="1010" y="132" text-anchor="middle" font-size="7.5" fill="#545B64">finops_cost_db</text>
+  <text x="1010" y="145" text-anchor="middle" font-size="7.5" fill="#545B64">cost_and_usage</text>
 
   <!-- Athena -->
-  <rect x="400" y="494" width="130" height="84" rx="8" fill="white" stroke="#0ea5e9" stroke-width="1.5"/>
-  <rect x="400" y="494" width="130" height="20" rx="8" fill="url(#dataGrad)"/>
-  <rect x="400" y="505" width="130" height="9" fill="url(#dataGrad)"/>
-  <text x="465" y="508" text-anchor="middle" font-size="9" font-weight="700" fill="white">Amazon Athena</text>
-  <text x="465" y="526" text-anchor="middle" font-size="8.5" fill="#374151">Serverless SQL</text>
-  <text x="465" y="539" text-anchor="middle" font-size="8" fill="#6b7280">Workgroup: finops-primary</text>
-  <text x="465" y="552" text-anchor="middle" font-size="8" fill="#6b7280">Cost queries + idle detection</text>
+  <rect x="1072" y="78" width="106" height="86" rx="5" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="1072" y="78" width="106" height="24" rx="5" fill="#8C4FFF"/>
+  <rect x="1072" y="94" width="106" height="8" fill="#8C4FFF"/>
+  <text x="1125" y="94" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff">Amazon Athena</text>
+  <text x="1125" y="118" text-anchor="middle" font-size="8.5" fill="#16191F">Serverless SQL</text>
+  <text x="1125" y="132" text-anchor="middle" font-size="7.5" fill="#545B64">finops-primary wg</text>
+  <text x="1125" y="145" text-anchor="middle" font-size="7.5" fill="#545B64">Query CUR on S3</text>
 
   <!-- DynamoDB -->
-  <rect x="560" y="494" width="310" height="84" rx="8" fill="white" stroke="#3b82f6" stroke-width="1.5"/>
-  <rect x="560" y="494" width="310" height="20" rx="8" fill="url(#dynGrad)"/>
-  <rect x="560" y="505" width="310" height="9" fill="url(#dynGrad)"/>
-  <text x="715" y="508" text-anchor="middle" font-size="9" font-weight="700" fill="white">Amazon DynamoDB — 4 Tables</text>
-  <text x="630" y="526" text-anchor="middle" font-size="8" fill="#374151">finops-recommendations</text>
-  <text x="630" y="538" text-anchor="middle" font-size="8" fill="#6b7280">REC# · PAY_PER_REQUEST · PITR</text>
-  <text x="630" y="550" text-anchor="middle" font-size="8" fill="#6b7280">GSI: by-owner · by-priority</text>
-  <text x="800" y="526" text-anchor="middle" font-size="8" fill="#374151">finops-approvals</text>
-  <text x="800" y="538" text-anchor="middle" font-size="8" fill="#6b7280">APPROVAL# · TTL 4h</text>
-  <text x="800" y="550" text-anchor="middle" font-size="8" fill="#6b7280">finops-action-history · finops-kpi-metrics</text>
+  <rect x="848" y="178" width="330" height="88" rx="5" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="848" y="178" width="330" height="24" rx="5" fill="#3334B9"/>
+  <rect x="848" y="194" width="330" height="8" fill="#3334B9"/>
+  <text x="1013" y="194" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff">Amazon DynamoDB — 4 Tables · PAY_PER_REQUEST · PITR</text>
+  <text x="930" y="220" text-anchor="middle" font-size="8" fill="#16191F">finops-recommendations</text>
+  <text x="930" y="234" text-anchor="middle" font-size="7.5" fill="#545B64">REC# · by-owner-status GSI · by-priority GSI</text>
+  <text x="930" y="248" text-anchor="middle" font-size="7.5" fill="#545B64">finops-action-history</text>
+  <line x1="1010" y1="208" x2="1010" y2="258" stroke="#E1E4E8" stroke-width="1"/>
+  <text x="1100" y="220" text-anchor="middle" font-size="8" fill="#16191F">finops-approvals</text>
+  <text x="1100" y="234" text-anchor="middle" font-size="7.5" fill="#545B64">APPROVAL# · TTL 4 hours</text>
+  <text x="1100" y="248" text-anchor="middle" font-size="7.5" fill="#545B64">finops-kpi-metrics</text>
 
-  <!-- AWS Cost Services -->
-  <rect x="900" y="494" width="160" height="84" rx="8" fill="white" stroke="#FF9900" stroke-width="1.5"/>
-  <rect x="900" y="494" width="160" height="20" rx="8" fill="url(#awsOrange)"/>
-  <rect x="900" y="505" width="160" height="9" fill="url(#awsOrange)"/>
-  <text x="980" y="508" text-anchor="middle" font-size="9" font-weight="700" fill="white">AWS Cost Services</text>
-  <text x="980" y="526" text-anchor="middle" font-size="8.5" fill="#374151">Cost Explorer</text>
-  <text x="980" y="538" text-anchor="middle" font-size="8" fill="#6b7280">Cost Anomaly Detection</text>
-  <text x="980" y="550" text-anchor="middle" font-size="8" fill="#6b7280">Compute Optimizer · Budgets</text>
-  <text x="980" y="562" text-anchor="middle" font-size="8" fill="#6b7280">Trusted Advisor · Savings Plans</text>
+  <!-- ════════════════════════════════════════
+       ZONE 5 — COST &amp; OPTIMIZATION SERVICES
+  ════════════════════════════════════════ -->
+  <rect x="832" y="294" width="358" height="158" rx="6"
+        fill="#FFF8F0" stroke="#AAB7B8" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="1011" y="310" text-anchor="middle" font-size="9" font-weight="600" fill="#545B64">AWS Cost &amp; Optimization Services</text>
 
-  <!-- ============================================================ -->
-  <!-- ZONE: WORKFLOW LAYER -->
-  <!-- ============================================================ -->
-  <rect x="28" y="600" width="1044" height="100" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1" stroke-dasharray="4,3"/>
-  <text x="42" y="616" font-size="9" font-weight="600" fill="#166534">Workflow &amp; Notification Layer</text>
+  <!-- Cost Explorer -->
+  <rect x="848" y="318" width="158" height="64" rx="5" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="848" y="318" width="158" height="22" rx="5" fill="#ED7100"/>
+  <rect x="848" y="333" width="158" height="7" fill="#ED7100"/>
+  <text x="927" y="333" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">AWS Cost Explorer</text>
+  <text x="927" y="354" text-anchor="middle" font-size="8.5" fill="#16191F">Spend queries · Forecast</text>
+  <text x="927" y="368" text-anchor="middle" font-size="7.5" fill="#545B64">Cost Anomaly Detection</text>
+  <text x="927" y="380" text-anchor="middle" font-size="7.5" fill="#545B64">get_anomalies API</text>
 
-  <!-- Step Functions -->
-  <rect x="60" y="622" width="340" height="68" rx="8" fill="white" stroke="#10b981" stroke-width="1.5"/>
-  <rect x="60" y="622" width="340" height="20" rx="8" fill="url(#workflowGrad)"/>
-  <rect x="60" y="633" width="340" height="9" fill="url(#workflowGrad)"/>
-  <text x="230" y="636" text-anchor="middle" font-size="9" font-weight="700" fill="white">AWS Step Functions — finops-action-workflow</text>
-  <text x="230" y="656" text-anchor="middle" font-size="9" fill="#374151">ValidateApproval  →  CreateTicket  →  NotifyOwner  →  UpdateActionState</text>
-  <text x="230" y="670" text-anchor="middle" font-size="8" fill="#6b7280">Triggered by EventBridge on ApprovalConfirmed · Fail state: ApprovalBlocked</text>
+  <!-- Compute Optimizer + Trusted Advisor -->
+  <rect x="1018" y="318" width="158" height="64" rx="5" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="1018" y="318" width="158" height="22" rx="5" fill="#ED7100"/>
+  <rect x="1018" y="333" width="158" height="7" fill="#ED7100"/>
+  <text x="1097" y="333" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">Compute Optimizer</text>
+  <text x="1097" y="354" text-anchor="middle" font-size="8.5" fill="#16191F">EC2 rightsizing recs</text>
+  <text x="1097" y="368" text-anchor="middle" font-size="7.5" fill="#545B64">Trusted Advisor checks</text>
+  <text x="1097" y="380" text-anchor="middle" font-size="7.5" fill="#545B64">Savings Plans API</text>
+
+  <!-- Budgets -->
+  <rect x="848" y="394" width="158" height="42" rx="5" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="848" y="394" width="158" height="20" rx="5" fill="#ED7100"/>
+  <rect x="848" y="407" width="158" height="7" fill="#ED7100"/>
+  <text x="927" y="407" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff">AWS Budgets</text>
+  <text x="927" y="426" text-anchor="middle" font-size="7.5" fill="#545B64">Budget variance · Policy enforcement</text>
+
+  <!-- Savings Plans -->
+  <rect x="1018" y="394" width="158" height="42" rx="5" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="1018" y="394" width="158" height="20" rx="5" fill="#ED7100"/>
+  <rect x="1018" y="407" width="158" height="7" fill="#ED7100"/>
+  <text x="1097" y="407" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff">Savings Plans</text>
+  <text x="1097" y="426" text-anchor="middle" font-size="7.5" fill="#545B64">Commitment analysis · 1yr / 3yr</text>
+
+  <!-- ════════════════════════════════════════
+       ZONE 6 — WORKFLOW &amp; NOTIFICATIONS
+  ════════════════════════════════════════ -->
+  <rect x="114" y="464" width="704" height="160" rx="6"
+        fill="#F2FDF4" stroke="#AAB7B8" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="466" y="480" text-anchor="middle" font-size="9" font-weight="600" fill="#545B64">Action Workflow &amp; Notifications</text>
 
   <!-- EventBridge -->
-  <rect x="420" y="622" width="170" height="68" rx="8" fill="white" stroke="#10b981" stroke-width="1.5"/>
-  <rect x="420" y="622" width="170" height="20" rx="8" fill="url(#workflowGrad)"/>
-  <rect x="420" y="633" width="170" height="9" fill="url(#workflowGrad)"/>
-  <text x="505" y="636" text-anchor="middle" font-size="9" font-weight="700" fill="white">Amazon EventBridge</text>
-  <text x="505" y="656" text-anchor="middle" font-size="8.5" fill="#374151">finops.approval · ApprovalConfirmed</text>
-  <text x="505" y="669" text-anchor="middle" font-size="8" fill="#6b7280">KPI weekly cron: Mon 06:00 UTC</text>
+  <rect x="130" y="490" width="148" height="80" rx="5" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="130" y="490" width="148" height="24" rx="5" fill="#E7157B"/>
+  <rect x="130" y="506" width="148" height="8" fill="#E7157B"/>
+  <text x="204" y="506" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff">Amazon EventBridge</text>
+  <text x="204" y="530" text-anchor="middle" font-size="8.5" fill="#16191F">ApprovalConfirmed event</text>
+  <text x="204" y="544" text-anchor="middle" font-size="7.5" fill="#545B64">KPI cron · Mon 06:00Z</text>
+  <text x="204" y="558" text-anchor="middle" font-size="7.5" fill="#545B64">Anomaly monitor trigger</text>
+
+  <!-- Step Functions -->
+  <rect x="290" y="490" width="250" height="116" rx="5" fill="#fff" stroke="#E1E4E8" stroke-width="1" filter="url(#sh)"/>
+  <rect x="290" y="490" width="250" height="24" rx="5" fill="#E7157B"/>
+  <rect x="290" y="506" width="250" height="8" fill="#E7157B"/>
+  <text x="415" y="506" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff">AWS Step Functions</text>
+  <text x="415" y="530" text-anchor="middle" font-size="8.5" fill="#16191F">finops-action-workflow</text>
+  <text x="415" y="544" text-anchor="middle" font-size="8" fill="#545B64">ValidateApproval → CreateTicket</text>
+  <text x="415" y="557" text-anchor="middle" font-size="8" fill="#545B64">→ NotifyOwner → UpdateActionState</text>
+  <text x="415" y="571" text-anchor="middle" font-size="7.5" fill="#879596">ApprovalBlocked  (Fail state)</text>
+  <text x="415" y="583" text-anchor="middle" font-size="7.5" fill="#879596">Full audit trail · Rollback path documented</text>
+  <text x="415" y="597" text-anchor="middle" font-size="7.5" fill="#879596">Triggered by EventBridge ApprovalConfirmed</text>
 
   <!-- Jira -->
-  <rect x="612" y="622" width="130" height="68" rx="8" fill="white" stroke="#0052cc" stroke-width="1.5"/>
-  <rect x="612" y="622" width="130" height="20" rx="8" fill="#0052cc"/>
-  <rect x="612" y="633" width="130" height="9" fill="#0052cc"/>
-  <text x="677" y="636" text-anchor="middle" font-size="9" font-weight="700" fill="white">Jira REST API v3</text>
-  <text x="677" y="657" text-anchor="middle" font-size="8.5" fill="#374151">create_ticket adapter</text>
-  <text x="677" y="670" text-anchor="middle" font-size="8" fill="#6b7280">Project: FINOPS · Labels: action_type</text>
+  <rect x="552" y="490" width="126" height="80" rx="5" fill="#fff" stroke="#0052CC" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="552" y="490" width="126" height="24" rx="5" fill="#0052CC"/>
+  <rect x="552" y="506" width="126" height="8" fill="#0052CC"/>
+  <text x="615" y="506" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff">Jira REST API v3</text>
+  <text x="615" y="530" text-anchor="middle" font-size="8.5" fill="#16191F">create_ticket adapter</text>
+  <text x="615" y="544" text-anchor="middle" font-size="7.5" fill="#545B64">Project FINOPS</text>
+  <text x="615" y="558" text-anchor="middle" font-size="7.5" fill="#545B64">FINOPS-#### created</text>
 
   <!-- Slack/Teams -->
-  <rect x="760" y="622" width="150" height="68" rx="8" fill="white" stroke="#4a154b" stroke-width="1.5"/>
-  <rect x="760" y="622" width="150" height="20" rx="8" fill="#4a154b"/>
-  <rect x="760" y="633" width="150" height="9" fill="#4a154b"/>
-  <text x="835" y="636" text-anchor="middle" font-size="9" font-weight="700" fill="white">Slack / Teams</text>
-  <text x="835" y="657" text-anchor="middle" font-size="8.5" fill="#374151">notify_owner adapter</text>
-  <text x="835" y="670" text-anchor="middle" font-size="8" fill="#6b7280">Webhook · #finops-actions</text>
+  <rect x="690" y="490" width="118" height="80" rx="5" fill="#fff" stroke="#4A154B" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="690" y="490" width="118" height="24" rx="5" fill="#4A154B"/>
+  <rect x="690" y="506" width="118" height="8" fill="#4A154B"/>
+  <text x="749" y="506" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff">Slack / Teams</text>
+  <text x="749" y="530" text-anchor="middle" font-size="8.5" fill="#16191F">notify_owner adapter</text>
+  <text x="749" y="544" text-anchor="middle" font-size="7.5" fill="#545B64">#finops-actions</text>
+  <text x="749" y="558" text-anchor="middle" font-size="7.5" fill="#545B64">Owner notified per rec</text>
 
-  <!-- CDK Stack label -->
-  <rect x="930" y="622" width="130" height="68" rx="8" fill="white" stroke="#f59e0b" stroke-width="1.5"/>
-  <rect x="930" y="622" width="130" height="20" rx="8" fill="#f59e0b"/>
-  <rect x="930" y="633" width="130" height="9" fill="#f59e0b"/>
-  <text x="995" y="636" text-anchor="middle" font-size="9" font-weight="700" fill="white">AWS CDK Stacks</text>
-  <text x="995" y="652" text-anchor="middle" font-size="7.5" fill="#374151">Foundation · Data · Agent</text>
-  <text x="995" y="664" text-anchor="middle" font-size="7.5" fill="#374151">Api · Workflow · Frontend</text>
-  <text x="995" y="676" text-anchor="middle" font-size="7.5" fill="#6b7280">TypeScript · IaC only</text>
+  <!-- ════════════════════════════════════════
+       CDK / CI PANEL
+  ════════════════════════════════════════ -->
+  <rect x="832" y="464" width="358" height="98" rx="6" fill="#FFF8E1" stroke="#F5A623" stroke-width="1.5"/>
+  <text x="1011" y="482" text-anchor="middle" font-size="9.5" font-weight="700" fill="#795548">AWS CDK (TypeScript) — 6 Stacks</text>
+  <text x="1011" y="498" text-anchor="middle" font-size="8.5" fill="#545B64">FinOpsFoundation · FinOpsData · FinOpsAgent</text>
+  <text x="1011" y="512" text-anchor="middle" font-size="8.5" fill="#545B64">FinOpsApi · FinOpsWorkflow · FinOpsFrontend</text>
+  <text x="1011" y="526" text-anchor="middle" font-size="7.5" fill="#879596">Deploy order: Foundation → Data → Agent → Api → Workflow + Frontend</text>
+  <line x1="838" y1="535" x2="1184" y2="535" stroke="#F5A623" stroke-width="0.5"/>
+  <text x="1011" y="549" text-anchor="middle" font-size="8.5" font-weight="600" fill="#16191F">GitHub Actions CI/CD</text>
+  <text x="1011" y="563" text-anchor="middle" font-size="7.5" fill="#545B64">ci.yml (lint · test · synth)  ·  deploy.yml  ·  eval.yml (weekly safety gate)</text>
 
-  <!-- ============================================================ -->
-  <!-- ARROWS / FLOW LINES -->
-  <!-- ============================================================ -->
+  <!-- ════════════════════════════════════════
+       FLOW ARROWS  (numbered)
+  ════════════════════════════════════════ -->
 
-  <!-- Browser → API Gateway -->
-  <line x1="445" y1="140" x2="445" y2="162" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- ① Users → Amplify -->
+  <line x1="72" y1="225" x2="128" y2="145" stroke="#545B64" stroke-width="1.5" marker-end="url(#arr)"/>
+  <circle cx="96" cy="183" r="9" fill="#545B64"/>
+  <text x="96" y="187" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">1</text>
 
-  <!-- Browser → Cognito (auth) -->
-  <line x1="410" y1="152" x2="200" y2="178" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-orange)"/>
+  <!-- ② Amplify ↔ Cognito (auth) -->
+  <line x1="207" y1="168" x2="207" y2="182" stroke="#DD344C" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arr-r)"/>
+  <circle cx="222" cy="176" r="8" fill="#DD344C"/>
+  <text x="222" y="180" text-anchor="middle" font-size="7.5" fill="#fff" font-weight="700">2</text>
 
-  <!-- API Gateway → Lambda -->
-  <line x1="390" y1="205" x2="430" y2="205" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- ③ Cognito validates → API GW -->
+  <line x1="207" y1="272" x2="207" y2="286" stroke="#DD344C" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arr-r)"/>
+  <circle cx="222" cy="279" r="8" fill="#DD344C"/>
+  <text x="222" y="283" text-anchor="middle" font-size="7.5" fill="#fff" font-weight="700">3</text>
 
-  <!-- Cognito → Lambda (JWT validation) -->
-  <line x1="200" y1="205" x2="240" y2="205" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrow-orange)"/>
+  <!-- ④ API GW → Lambda -->
+  <line x1="300" y1="326" x2="326" y2="180" stroke="#545B64" stroke-width="1.5" marker-end="url(#arr)"/>
+  <circle cx="312" cy="254" r="9" fill="#545B64"/>
+  <text x="312" y="258" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">4</text>
 
-  <!-- Lambda → Secrets Manager -->
-  <line x1="590" y1="205" x2="630" y2="205" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrow)"/>
+  <!-- ⑤ Lambda → Bedrock Supervisor -->
+  <line x1="484" y1="128" x2="524" y2="118" stroke="#7B61FF" stroke-width="2" marker-end="url(#arr-v)"/>
+  <circle cx="503" cy="124" r="9" fill="#7B61FF"/>
+  <text x="503" y="128" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">5</text>
+  <text x="503" y="112" text-anchor="middle" font-size="7" fill="#7B61FF">invoke_agent()</text>
 
-  <!-- Lambda → CloudWatch -->
-  <line x1="700" y1="178" x2="810" y2="205" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrow)"/>
+  <!-- ⑥ Bedrock → Data (Athena / DynamoDB) -->
+  <line x1="820" y1="220" x2="848" y2="210" stroke="#3334B9" stroke-width="1.5" marker-end="url(#arr)"/>
+  <circle cx="833" cy="215" r="9" fill="#3334B9"/>
+  <text x="833" y="219" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">6</text>
 
-  <!-- Lambda → Bedrock Supervisor -->
-  <line x1="510" y1="232" x2="150" y2="276" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow-blue)"/>
-  <text x="300" y="262" font-size="8" fill="#7c3aed" transform="rotate(-18,300,262)">invoke_agent()</text>
+  <!-- ⑦ Bedrock → S3/Glue/Athena pipeline -->
+  <line x1="820" y1="165" x2="848" y2="130" stroke="#3F8624" stroke-width="1.5" marker-end="url(#arr)"/>
+  <circle cx="833" cy="147" r="9" fill="#3F8624"/>
+  <text x="833" y="151" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">7</text>
+  <!-- S3 → Glue -->
+  <line x1="948" y1="124" x2="960" y2="124" stroke="#3F8624" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- Glue → Athena -->
+  <line x1="1060" y1="124" x2="1072" y2="124" stroke="#8C4FFF" stroke-width="1.5" marker-end="url(#arr)"/>
 
-  <!-- Supervisor → Cost Analysis -->
-  <line x1="240" y1="360" x2="290" y2="360" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <!-- ⑧ Bedrock → Cost Services -->
+  <line x1="820" y1="360" x2="848" y2="360" stroke="#ED7100" stroke-width="1.5" marker-end="url(#arr)"/>
+  <circle cx="833" cy="360" r="9" fill="#ED7100"/>
+  <text x="833" y="364" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">8</text>
 
-  <!-- Supervisor → Optimization -->
-  <line x1="240" y1="370" x2="550" y2="370" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
-
-  <!-- Supervisor → Governance -->
-  <line x1="240" y1="380" x2="810" y2="380" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
-
-  <!-- Cost Agent → Athena/Cost Services -->
-  <line x1="395" y1="446" x2="465" y2="474" stroke="#0ea5e9" stroke-width="1.5" marker-end="url(#arrow-green)"/>
-  <line x1="395" y1="446" x2="980" y2="474" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrow-green)"/>
-
-  <!-- Optimization → Compute Optimizer / Athena -->
-  <line x1="655" y1="446" x2="560" y2="474" stroke="#0ea5e9" stroke-width="1.5" marker-end="url(#arrow-green)"/>
-  <line x1="700" y1="446" x2="940" y2="474" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrow-green)"/>
-
-  <!-- Governance → DynamoDB -->
-  <line x1="915" y1="446" x2="780" y2="474" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
-
-  <!-- DynamoDB → Step Functions -->
-  <line x1="715" y1="578" x2="230" y2="622" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-green)"/>
-
-  <!-- Step Functions → Jira -->
-  <line x1="400" y1="656" x2="612" y2="656" stroke="#0052cc" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
-
-  <!-- Step Functions → Slack -->
-  <line x1="400" y1="668" x2="760" y2="668" stroke="#4a154b" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <!-- ⑨ Lambda → Step Functions (on approval) -->
+  <line x1="405" y1="382" x2="380" y2="490" stroke="#E7157B" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-p)"/>
+  <circle cx="390" cy="438" r="9" fill="#E7157B"/>
+  <text x="390" y="442" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">9</text>
+  <text x="390" y="428" text-anchor="middle" font-size="7" fill="#E7157B">on approval</text>
 
   <!-- EventBridge → Step Functions -->
-  <line x1="420" y1="656" x2="400" y2="656" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <line x1="278" y1="530" x2="290" y2="530" stroke="#E7157B" stroke-width="1.5" marker-end="url(#arr-p)"/>
 
-  <!-- Lambda → Step Functions (via EventBridge) -->
-  <line x1="510" y1="232" x2="505" y2="622" stroke="#10b981" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow-green)"/>
+  <!-- Step Functions → Jira -->
+  <line x1="540" y1="524" x2="552" y2="524" stroke="#0052CC" stroke-width="1.5" marker-end="url(#arr)"/>
 
-  <!-- S3 → Glue → Athena pipeline arrows -->
-  <line x1="210" y1="536" x2="240" y2="536" stroke="#0ea5e9" stroke-width="1.5" marker-end="url(#arrow-green)"/>
-  <line x1="370" y1="536" x2="400" y2="536" stroke="#0ea5e9" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <!-- Step Functions → Slack -->
+  <line x1="540" y1="538" x2="690" y2="538" stroke="#4A154B" stroke-width="1.5" marker-end="url(#arr)"/>
 
-  <!-- ============================================================ -->
-  <!-- LEGEND -->
-  <!-- ============================================================ -->
-  <rect x="28" y="710" width="1044" height="60" rx="6" fill="white" stroke="#e2e8f0" stroke-width="1"/>
-  <text x="46" y="726" font-size="10" font-weight="700" fill="#0f172a">Legend</text>
+  <!-- Bedrock → EventBridge (ApprovalConfirmed event) -->
+  <line x1="665" y1="452" x2="480" y2="490" stroke="#E7157B" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr-p)"/>
+  <text x="576" y="476" text-anchor="middle" font-size="7" fill="#E7157B">ApprovalConfirmed event</text>
 
-  <line x1="96" y1="726" x2="126" y2="726" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow-blue)"/>
-  <text x="130" y="730" font-size="9" fill="#374151">Bedrock agent call</text>
+  <!-- ════════════════════════════════════════
+       LEGEND
+  ════════════════════════════════════════ -->
+  <rect x="114" y="634" width="1076" height="20" rx="4" fill="#F8F9FA"/>
+  <text x="130" y="647" font-size="7.5" fill="#545B64" font-weight="600">Flow: </text>
+  <circle cx="160" cy="643" r="6" fill="#545B64"/>
+  <text x="160" y="647" text-anchor="middle" font-size="6" fill="#fff" font-weight="700">1</text>
+  <text x="172" y="647" font-size="7" fill="#545B64">Browser</text>
+  <circle cx="215" cy="643" r="6" fill="#DD344C"/>
+  <text x="215" y="647" text-anchor="middle" font-size="6" fill="#fff" font-weight="700">2-3</text>
+  <text x="228" y="647" font-size="7" fill="#545B64">Auth</text>
+  <circle cx="262" cy="643" r="6" fill="#545B64"/>
+  <text x="262" y="647" text-anchor="middle" font-size="6" fill="#fff" font-weight="700">4</text>
+  <text x="274" y="647" font-size="7" fill="#545B64">API</text>
+  <circle cx="308" cy="643" r="6" fill="#7B61FF"/>
+  <text x="308" y="647" text-anchor="middle" font-size="6" fill="#fff" font-weight="700">5</text>
+  <text x="320" y="647" font-size="7" fill="#545B64">Bedrock invoke</text>
+  <circle cx="386" cy="643" r="6" fill="#3334B9"/>
+  <text x="386" y="647" text-anchor="middle" font-size="6" fill="#fff" font-weight="700">6</text>
+  <text x="398" y="647" font-size="7" fill="#545B64">DynamoDB</text>
+  <circle cx="452" cy="643" r="6" fill="#3F8624"/>
+  <text x="452" y="647" text-anchor="middle" font-size="6" fill="#fff" font-weight="700">7</text>
+  <text x="464" y="647" font-size="7" fill="#545B64">S3→Glue→Athena</text>
+  <circle cx="536" cy="643" r="6" fill="#ED7100"/>
+  <text x="536" y="647" text-anchor="middle" font-size="6" fill="#fff" font-weight="700">8</text>
+  <text x="548" y="647" font-size="7" fill="#545B64">Cost Services</text>
+  <circle cx="600" cy="643" r="6" fill="#E7157B"/>
+  <text x="600" y="647" text-anchor="middle" font-size="6" fill="#fff" font-weight="700">9</text>
+  <text x="612" y="647" font-size="7" fill="#545B64">Approval → Step Functions → Jira + Slack</text>
+  <!-- right side note -->
+  <text x="1150" y="647" text-anchor="end" font-size="7" fill="#879596">DEMO_MODE=true → all adapters serve from fixtures/</text>
 
-  <line x1="230" y1="726" x2="260" y2="726" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-green)"/>
-  <text x="264" y="730" font-size="9" fill="#374151">Data query</text>
-
-  <line x1="340" y1="726" x2="370" y2="726" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-green)"/>
-  <text x="374" y="730" font-size="9" fill="#374151">Workflow trigger</text>
-
-  <line x1="466" y1="726" x2="496" y2="726" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#arrow-orange)"/>
-  <text x="500" y="730" font-size="9" fill="#374151">Auth / JWT</text>
-
-  <line x1="566" y1="726" x2="596" y2="726" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#arrow)"/>
-  <text x="600" y="730" font-size="9" fill="#374151">Supporting call</text>
-
-  <!-- Second legend row -->
-  <rect x="700" y="718" width="10" height="10" rx="2" fill="#FF9900"/>
-  <text x="716" y="728" font-size="9" fill="#374151">AWS managed service</text>
-  <rect x="820" y="718" width="10" height="10" rx="2" fill="#7c3aed"/>
-  <text x="836" y="728" font-size="9" fill="#374151">Amazon Bedrock</text>
-  <rect x="920" y="718" width="10" height="10" rx="2" fill="#0ea5e9"/>
-  <text x="936" y="728" font-size="9" fill="#374151">Data pipeline</text>
-
-  <text x="46" y="754" font-size="9" fill="#374151">All infrastructure defined in AWS CDK TypeScript · 6 stacks deployed in order: Foundation → Data → Agent → Api → Workflow + Frontend</text>
-  <text x="46" y="766" font-size="9" fill="#374151">DEMO_MODE=true: all AWS calls replaced by fixtures/  ·  Safety violations: 0 (hard requirement)  ·  IAM least privilege on every Lambda</text>
 </svg>
