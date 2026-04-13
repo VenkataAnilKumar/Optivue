@@ -13,7 +13,7 @@ export function Navbar({ userEmail, userRole }: NavbarProps) {
   return (
     <nav className="flex h-14 items-center justify-between border-b border-gray-200 bg-white px-6 shadow-sm">
       <Link href="/" className="text-lg font-bold text-brand-500">
-        FinOps Agent
+        Optivue
       </Link>
       <div className="flex items-center gap-4">
         {userEmail && (

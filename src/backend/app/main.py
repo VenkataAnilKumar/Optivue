@@ -12,7 +12,7 @@ from app.routers import actions, anomalies, cost, kpi, recommendations
 logger = logging.getLogger(__name__)
 
 app = FastAPI(
-    title="FinOps Agent API",
+    title="Optivue API",
     description="AWS-first cloud cost optimization platform",
     version="0.1.0",
 )

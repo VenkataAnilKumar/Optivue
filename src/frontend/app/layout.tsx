@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'FinOps Agent',
+  title: 'Optivue',
   description: 'AWS-first cloud cost optimization powered by AI',
 };
 

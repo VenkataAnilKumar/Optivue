@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 
 const DEMO_RESPONSES: Record<string, string> = {
   default:
-    "I'm the FinOps Agent. I can help you analyze cloud costs, explain anomalies, and surface savings recommendations. What would you like to know?",
+    "I'm Optivue. I can help you analyze cloud costs, explain anomalies, and surface savings recommendations. What would you like to know?",
 };
 
 interface ChatPanelProps {
