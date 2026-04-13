@@ -1,5 +1,6 @@
 """Shared pytest fixtures for all test layers."""
 import os
+
 import pytest
 
 os.environ.setdefault("AWS_DEFAULT_REGION", "us-east-1")

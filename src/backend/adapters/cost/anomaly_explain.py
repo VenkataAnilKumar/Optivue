@@ -1,8 +1,9 @@
 """Bedrock action group handler: get_anomaly_explanation."""
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 
 import boto3
 
@@ -28,7 +29,7 @@ def _classify_severity(impact: float) -> str:
     return "low"
 
 
-def handler(event: dict, context) -> dict:
+def handler(event: dict[str, Any], context: Any) -> dict[str, Any]:
     """Bedrock action group handler for get_anomaly_explanation."""
     params = {p["name"]: p["value"] for p in event.get("parameters", [])}
     anomaly_id = params.get("anomaly_id", "")
@@ -37,7 +38,7 @@ def handler(event: dict, context) -> dict:
         fixture_path = FIXTURES_DIR / "sample-anomaly.json"
         result = json.loads(fixture_path.read_text()) if fixture_path.exists() else {}
         result["demo_mode"] = True
-        result["data_freshness_timestamp"] = datetime.now(timezone.utc).isoformat()
+        result["data_freshness_timestamp"] = datetime.now(UTC).isoformat()
     else:
         ce = boto3.client("ce", region_name=settings.aws_region)
         try:
@@ -45,7 +46,7 @@ def handler(event: dict, context) -> dict:
                 AnomalyMonitor={"MonitorArn": anomaly_id} if anomaly_id.startswith("arn:") else {},
                 DateInterval={
                     "StartDate": "2024-01-01",
-                    "EndDate": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                    "EndDate": datetime.now(UTC).strftime("%Y-%m-%d"),
                 },
             )
             anomalies = resp.get("Anomalies", [])
@@ -58,16 +59,19 @@ def handler(event: dict, context) -> dict:
                 "end_time": target.get("AnomalyEndDate", ""),
                 "impact_amount": round(impact, 2),
                 "severity": _classify_severity(impact),
-                "root_cause_summary": target.get("RootCauses", [{}])[0].get("Service", "Unknown") if target.get("RootCauses") else "Unknown",
+                "root_cause_summary": (
+                    target.get("RootCauses", [{}])[0].get("Service", "Unknown")
+                    if target.get("RootCauses") else "Unknown"
+                ),
                 "likely_drivers": [
                     rc.get("Service", "") for rc in target.get("RootCauses", [])
                 ],
                 "likely_owner": target.get("Feedback", {}).get("FeedbackType", "unassigned"),
-                "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+                "data_freshness_timestamp": datetime.now(UTC).isoformat(),
             }
         except Exception as exc:  # noqa: BLE001
             logger.error(json.dumps({"error": "anomaly_fetch_failed", "detail": str(exc)}))
-            result = {"error": "Anomaly lookup failed. Please retry.", "data_freshness_timestamp": datetime.now(timezone.utc).isoformat()}
+            result = {"error": "Anomaly lookup failed. Please retry.", "data_freshness_timestamp": datetime.now(UTC).isoformat()}
 
     return {
         "messageVersion": "1.0",

@@ -1,8 +1,9 @@
 """Bedrock action group handler: analyze_commitment_opportunities."""
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 
 import boto3
 
@@ -12,7 +13,7 @@ logger = logging.getLogger(__name__)
 FIXTURES_DIR = Path(__file__).parents[4] / "fixtures"
 
 
-def handler(event: dict, context) -> dict:
+def handler(event: dict[str, Any], context: Any) -> dict[str, Any]:
     """Bedrock action group handler for analyze_commitment_opportunities."""
     params = {p["name"]: p["value"] for p in event.get("parameters", [])}
     term_years = int(params.get("term_years", 1))
@@ -29,7 +30,7 @@ def handler(event: dict, context) -> dict:
             "commitments": commitments,
             "total": len(commitments),
             "demo_mode": True,
-            "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+            "data_freshness_timestamp": datetime.now(UTC).isoformat(),
         }
     else:
         ce = boto3.client("ce", region_name=settings.aws_region)
@@ -62,11 +63,11 @@ def handler(event: dict, context) -> dict:
                 "confidence_score": 0.85,
                 "effort": "low",
                 "risk": "medium",
-                "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+                "data_freshness_timestamp": datetime.now(UTC).isoformat(),
             }
         except Exception as exc:  # noqa: BLE001
             logger.error(json.dumps({"error": "commitments_failed", "detail": str(exc)}))
-            result = {"error": "Commitment analysis failed.", "data_freshness_timestamp": datetime.now(timezone.utc).isoformat()}
+            result = {"error": "Commitment analysis failed.", "data_freshness_timestamp": datetime.now(UTC).isoformat()}
 
     return {
         "messageVersion": "1.0",

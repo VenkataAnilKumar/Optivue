@@ -1,7 +1,7 @@
 """Pydantic v2 model for a FinOps recommendation."""
 from __future__ import annotations
 
-from typing import Annotated, Literal, Optional
+from typing import Annotated, Literal
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -18,8 +18,8 @@ class Recommendation(BaseModel):
     id: str
     resource_type: str
     resource_id: str
-    account_id: Optional[str] = None
-    region: Optional[str] = None
+    account_id: str | None = None
+    region: str | None = None
     action_type: ActionType
     title: str = ""
     description: str = ""
@@ -32,7 +32,7 @@ class Recommendation(BaseModel):
     strategic_alignment_score: Annotated[float, Field(ge=0.0, le=1.0)] = 0.5
     needs_review: bool = False
     status: RecommendationStatus = "new"
-    owner: Optional[str] = None
+    owner: str | None = None
     data_freshness_timestamp: str = ""
     created_at: str = ""
     updated_at: str = ""
@@ -47,5 +47,5 @@ class Recommendation(BaseModel):
 
 class RecommendationStatusUpdate(BaseModel):
     status: RecommendationStatus
-    actor: Optional[str] = None
-    reason: Optional[str] = None
+    actor: str | None = None
+    reason: str | None = None

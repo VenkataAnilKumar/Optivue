@@ -1,8 +1,9 @@
 """Bedrock action group handler: detect_idle_resources."""
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 
 import boto3
 
@@ -15,9 +16,9 @@ _CPU_IDLE_THRESHOLD_PCT = 5.0
 CW_PERIOD_SECONDS = 86400 * 14  # 14 days
 
 
-def _get_ec2_cpu_utilization(instance_id: str, cw_client) -> float:
+def _get_ec2_cpu_utilization(instance_id: str, cw_client: Any) -> float:
     """Return average CPU utilisation for the last 14 days."""
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     from datetime import timedelta
 
     start = now - timedelta(days=14)
@@ -36,7 +37,7 @@ def _get_ec2_cpu_utilization(instance_id: str, cw_client) -> float:
     return datapoints[0].get("Average", 0.0)
 
 
-def handler(event: dict, context) -> dict:
+def handler(event: dict[str, Any], context: Any) -> dict[str, Any]:
     """Bedrock action group handler for detect_idle_resources."""
     if settings.demo_mode:
         fixture_path = FIXTURES_DIR / "sample-recommendations.json"
@@ -49,7 +50,7 @@ def handler(event: dict, context) -> dict:
             "idle_resources": idle,
             "total": len(idle),
             "demo_mode": True,
-            "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+            "data_freshness_timestamp": datetime.now(UTC).isoformat(),
         }
     else:
         ec2 = boto3.client("ec2", region_name=settings.aws_region)
@@ -77,11 +78,11 @@ def handler(event: dict, context) -> dict:
             result = {
                 "idle_resources": idle_resources,
                 "total": len(idle_resources),
-                "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+                "data_freshness_timestamp": datetime.now(UTC).isoformat(),
             }
         except Exception as exc:  # noqa: BLE001
             logger.error(json.dumps({"error": "idle_detection_failed", "detail": str(exc)}))
-            result = {"error": "Idle resource detection failed.", "data_freshness_timestamp": datetime.now(timezone.utc).isoformat()}
+            result = {"error": "Idle resource detection failed.", "data_freshness_timestamp": datetime.now(UTC).isoformat()}
 
     return {
         "messageVersion": "1.0",

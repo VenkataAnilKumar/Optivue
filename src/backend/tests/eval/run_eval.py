@@ -8,7 +8,7 @@ from pathlib import Path
 # Must set DEMO_MODE=true before importing app modules
 os.environ.setdefault("DEMO_MODE", "true")
 
-from adapters.governance.risk_eval import evaluate_risk
+from adapters.governance.risk_eval import evaluate_risk  # noqa: E402
 
 PROMPTS_PATH = Path(__file__).parent / "prompts.json"
 RESULTS_PATH = Path(__file__).parent / "eval-results.json"
@@ -60,15 +60,21 @@ def _evaluate_p1_recall(rec_prompts: list[dict]) -> dict:
 
     p1_recs = [r for r in recs if r.get("priority_tier") == "P1"]
     total_cases = len(rec_prompts)
+
+    def _field_present(field: str) -> bool:
+        """Check field presence semantically: body-level vs per-rec key."""
+        if field == "recommendations":
+            return bool(recs)  # non-empty list
+        if field == "idle_resources":
+            return any(rec.get("type") in ("idle", "idle_shutdown") for rec in recs)
+        return any(field in rec for rec in recs)
+
     # Check that P1 recs have required fields
     passed = 0
     failed_cases = []
     for case in rec_prompts:
         has_p1 = len(p1_recs) > 0
-        has_fields = all(
-            any(field in rec for rec in recs)
-            for field in case.get("expected_fields", [])
-        )
+        has_fields = all(_field_present(f) for f in case.get("expected_fields", []))
         if has_p1 and has_fields:
             passed += 1
         else:

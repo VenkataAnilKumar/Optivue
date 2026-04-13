@@ -2,7 +2,7 @@
 import json
 import logging
 import uuid
-from datetime import datetime, timezone, timedelta
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 import boto3
@@ -49,7 +49,7 @@ async def request_approval(
     """Create an approval request record."""
     approval_request_id = str(uuid.uuid4())
     approval_token = str(uuid.uuid4())
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     expires_at = now + timedelta(hours=_TOKEN_TTL_HOURS)
     ttl_epoch = int(expires_at.timestamp())
 
@@ -135,7 +135,7 @@ async def validate_approval_token(
             return False
 
         expires_at = datetime.fromisoformat(item["expires_at"])
-        if datetime.now(timezone.utc) > expires_at:
+        if datetime.now(UTC) > expires_at:
             logger.warning(json.dumps({"event": "approval_token_expired"}))
             return False
 

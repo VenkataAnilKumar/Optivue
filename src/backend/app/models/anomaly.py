@@ -1,7 +1,7 @@
 """Pydantic v2 model for cost anomaly data."""
 from __future__ import annotations
 
-from typing import Annotated, Literal, Optional
+from typing import Annotated, Literal
 
 from pydantic import BaseModel, Field
 
@@ -9,10 +9,10 @@ SeverityLevel = Literal["critical", "high", "medium", "low"]
 
 
 class AnomalyRootCause(BaseModel):
-    service: Optional[str] = None
-    region: Optional[str] = None
-    usage_type: Optional[str] = None
-    linked_account: Optional[str] = None
+    service: str | None = None
+    region: str | None = None
+    usage_type: str | None = None
+    linked_account: str | None = None
 
 
 class Anomaly(BaseModel):
@@ -20,11 +20,11 @@ class Anomaly(BaseModel):
 
     anomaly_id: str
     start_time: str
-    end_time: Optional[str] = None
+    end_time: str | None = None
     impact_amount: Annotated[float, Field(ge=0.0)]
     severity: SeverityLevel
     root_cause_summary: str
     likely_drivers: list[str] = Field(default_factory=list)
-    likely_owner: Optional[str] = None
+    likely_owner: str | None = None
     root_causes: list[AnomalyRootCause] = Field(default_factory=list)
     data_freshness_timestamp: str

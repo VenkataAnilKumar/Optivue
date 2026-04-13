@@ -1,10 +1,12 @@
 import logging
+from typing import Any
 
 from fastapi import FastAPI
+
 try:
     from mangum import Mangum
 except ModuleNotFoundError:  # pragma: no cover - local test fallback
-    Mangum = None  # type: ignore[assignment]
+    Mangum = None  # type: ignore[misc, assignment]
 
 from app.middleware.logging import RequestLoggingMiddleware
 from app.routers import actions, anomalies, cost, kpi, recommendations
@@ -27,9 +29,9 @@ app.include_router(kpi.router, prefix="/kpi", tags=["kpi"])
 
 
 @app.get("/health", tags=["health"])
-async def health() -> dict:
+async def health() -> dict[str, Any]:
     """Health check endpoint — no auth required."""
     return {"status": "healthy", "version": "0.1.0"}
 
 
-handler = Mangum(app, lifespan="off") if Mangum else None
+handler = Mangum(app, lifespan="off") if Mangum is not None else None

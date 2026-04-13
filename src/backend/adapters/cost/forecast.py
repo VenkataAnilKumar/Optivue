@@ -1,8 +1,9 @@
 """Bedrock action group handler: get_forecast."""
 import json
 import logging
-from datetime import datetime, timezone, timedelta
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
+from typing import Any
 
 import boto3
 
@@ -15,7 +16,7 @@ MONTHLY_ERROR_THRESHOLD = 0.15
 QUARTERLY_ERROR_THRESHOLD = 0.25
 
 
-def handler(event: dict, context) -> dict:
+def handler(event: dict[str, Any], context: Any) -> dict[str, Any]:
     """Bedrock action group handler for get_forecast."""
     params = {p["name"]: p["value"] for p in event.get("parameters", [])}
     months_ahead = int(params.get("months_ahead", 1))
@@ -26,12 +27,12 @@ def handler(event: dict, context) -> dict:
         result = {
             "forecast": data.get("forecast", {}),
             "demo_mode": True,
-            "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+            "data_freshness_timestamp": datetime.now(UTC).isoformat(),
         }
     else:
         ce = boto3.client("ce", region_name=settings.aws_region)
-        start = (datetime.now(timezone.utc) + timedelta(days=1)).strftime("%Y-%m-%d")
-        end_dt = datetime.now(timezone.utc)
+        start = (datetime.now(UTC) + timedelta(days=1)).strftime("%Y-%m-%d")
+        end_dt = datetime.now(UTC)
         for _ in range(months_ahead):
             # advance by roughly one month
             end_dt = end_dt.replace(day=1)
@@ -62,11 +63,11 @@ def handler(event: dict, context) -> dict:
                 "error_band_pct": round(error_band_pct, 4),
                 "forecast_reliability": "low" if error_band_pct > threshold else "high",
                 "model_basis": "AWS Cost Explorer forecast API",
-                "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+                "data_freshness_timestamp": datetime.now(UTC).isoformat(),
             }
         except Exception as exc:  # noqa: BLE001
             logger.error(json.dumps({"error": "forecast_failed", "detail": str(exc)}))
-            result = {"error": "Forecast failed.", "data_freshness_timestamp": datetime.now(timezone.utc).isoformat()}
+            result = {"error": "Forecast failed.", "data_freshness_timestamp": datetime.now(UTC).isoformat()}
 
     return {
         "messageVersion": "1.0",

@@ -1,7 +1,8 @@
 """KPI computation and snapshot service."""
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
+from typing import Any, cast
 
 import boto3
 from boto3.dynamodb.conditions import Key
@@ -11,11 +12,11 @@ from app.config import settings
 logger = logging.getLogger(__name__)
 
 
-def _dynamodb_resource():
+def _dynamodb_resource() -> Any:
     return boto3.resource("dynamodb", region_name=settings.aws_region)
 
 
-async def compute_weekly_kpis() -> dict:
+async def compute_weekly_kpis() -> dict[str, Any]:
     """Compute weekly KPI snapshot and write to finops-kpi-metrics."""
     db = _dynamodb_resource()
     recs_table = db.Table(settings.dynamodb_recommendations_table)
@@ -27,7 +28,7 @@ async def compute_weekly_kpis() -> dict:
         FilterExpression="begins_with(sk, :meta)",
         ExpressionAttributeValues={":meta": "METADATA"},
     )
-    all_recs = recs_response.get("Items", [])
+    all_recs = cast(list[dict[str, Any]], recs_response.get("Items", []))
     open_recs = [r for r in all_recs if r.get("status") == "open"]
     acknowledged = [r for r in all_recs if r.get("status") in ("acknowledged", "in_progress", "completed")]
     completed = [r for r in all_recs if r.get("status") == "completed"]
@@ -42,10 +43,10 @@ async def compute_weekly_kpis() -> dict:
         ExpressionAttributeNames={"#result": "result"},
         ExpressionAttributeValues={":blocked": "blocked"},
     )
-    safety_violations = len(history_response.get("Items", []))
+    safety_violations = len(cast(list[dict[str, Any]], history_response.get("Items", [])))
 
-    now = datetime.now(timezone.utc).isoformat()
-    week_key = datetime.now(timezone.utc).strftime("%Y-W%W")
+    now = datetime.now(UTC).isoformat()
+    week_key = datetime.now(UTC).strftime("%Y-W%W")
 
     kpi_snapshot = {
         "recommendation_acceptance_rate": round(acceptance_rate, 4),
@@ -83,7 +84,7 @@ async def compute_weekly_kpis() -> dict:
     return kpi_snapshot
 
 
-async def get_latest_kpis() -> dict:
+async def get_latest_kpis() -> dict[str, Any]:
     """Retrieve the most recent weekly KPI snapshot."""
     try:
         db = _dynamodb_resource()
@@ -93,10 +94,11 @@ async def get_latest_kpis() -> dict:
             ScanIndexForward=False,
             Limit=1,
         )
-        items = response.get("Items", [])
+        items = cast(list[dict[str, Any]], response.get("Items", []))
         if not items:
             return {"message": "No KPI data available yet.", "demo_mode": settings.demo_mode}
         return items[0]
     except Exception as exc:  # noqa: BLE001
         logger.warning(json.dumps({"event": "kpi_read_fallback", "detail": str(exc)}))
         return {"message": "KPI service unavailable.", "demo_mode": settings.demo_mode}
+

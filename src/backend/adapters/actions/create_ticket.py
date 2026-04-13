@@ -2,7 +2,7 @@
 import json
 import logging
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 import boto3
@@ -94,7 +94,7 @@ async def create_jira_ticket(
     table = dynamo.Table(settings.action_history_table_name)
     table.put_item(Item={
         "pk": f"ACTION#{recommendation_id}",
-        "sk": f"HISTORY#{datetime.now(timezone.utc).isoformat()}",
+        "sk": f"HISTORY#{datetime.now(UTC).isoformat()}",
         "event_type": "ticket_created",
         "recommendation_id": recommendation_id,
         "ticket_id": result["ticket_id"],
@@ -102,7 +102,7 @@ async def create_jira_ticket(
         "actor": actor,
         "action_type": action_type,
         "approval_token": approval_token[:8] + "...",  # truncated for security
-        "created_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": datetime.now(UTC).isoformat(),
     })
 
     return result

@@ -1,9 +1,12 @@
+from typing import Any
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
-from app.services.auth_service import get_current_user, UserContext
-from adapters.governance.approval import request_approval, get_approval_status, validate_approval_token
+
 from adapters.actions.create_ticket import create_jira_ticket
 from adapters.actions.notify_owner import send_owner_notification
+from adapters.governance.approval import get_approval_status, request_approval, validate_approval_token
+from app.services.auth_service import UserContext, get_current_user
 
 router = APIRouter()
 
@@ -11,7 +14,7 @@ router = APIRouter()
 class ApprovalRequestBody(BaseModel):
     recommendation_id: str
     action_type: str
-    approver_role: str
+    environment: str = "prod"
 
 
 class ApproveBody(BaseModel):
@@ -25,13 +28,13 @@ class ApproveBody(BaseModel):
 async def request_action_approval(
     body: ApprovalRequestBody,
     user: UserContext = Depends(get_current_user),
-) -> dict:
+) -> dict[str, Any]:
     """Create an approval request for a recommendation action (FR-6)."""
     result = await request_approval(
         recommendation_id=body.recommendation_id,
         action_type=body.action_type,
         requester=user.sub,
-        approver_role=body.approver_role,
+        environment=body.environment,
     )
     return result
 
@@ -40,7 +43,7 @@ async def request_action_approval(
 async def check_approval_status(
     approval_request_id: str,
     user: UserContext = Depends(get_current_user),
-) -> dict:
+) -> dict[str, Any]:
     """Check the status of a pending approval."""
     result = await get_approval_status(approval_request_id=approval_request_id)
     return result
@@ -50,7 +53,7 @@ async def check_approval_status(
 async def execute_action(
     body: ApproveBody,
     user: UserContext = Depends(get_current_user),
-) -> dict:
+) -> dict[str, Any]:
     """Execute an approved action — human-in-the-loop enforcement (FR-4, FR-6)."""
     # Validate approval token FIRST — non-negotiable safety gate
     is_valid = await validate_approval_token(

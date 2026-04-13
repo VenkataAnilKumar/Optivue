@@ -2,7 +2,7 @@
 import logging
 from dataclasses import dataclass
 from functools import lru_cache
-from typing import Any
+from typing import Any, cast
 
 import httpx
 from fastapi import Depends, HTTPException, status
@@ -11,14 +11,14 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 try:
     from jose import JWTError, jwk, jwt
 except ModuleNotFoundError:  # pragma: no cover - local fallback when auth libs are absent
-    JWTError = Exception  # type: ignore[assignment]
-    jwk = None  # type: ignore[assignment]
-    jwt = None  # type: ignore[assignment]
+    JWTError = Exception
+    jwk = None
+    jwt = None
 
 from app.config import settings
 
 logger = logging.getLogger(__name__)
-bearerScheme = HTTPBearer(auto_error=False)
+bearer_scheme = HTTPBearer(auto_error=False)
 
 
 @dataclass
@@ -30,7 +30,7 @@ class UserContext:
 
 
 @lru_cache(maxsize=1)
-def _fetch_jwks() -> dict:
+def _fetch_jwks() -> dict[str, Any]:
     """Fetch and cache Cognito JWKS."""
     url = (
         f"https://cognito-idp.{settings.aws_region}.amazonaws.com/"
@@ -39,7 +39,7 @@ def _fetch_jwks() -> dict:
     with httpx.Client(timeout=5) as client:
         resp = client.get(url)
         resp.raise_for_status()
-    return resp.json()
+    return cast(dict[str, Any], resp.json())
 
 
 def _get_public_key(token: str) -> Any:
@@ -62,7 +62,7 @@ def _get_public_key(token: str) -> Any:
     )
 
 
-def _decode_token(token: str) -> dict:
+def _decode_token(token: str) -> dict[str, Any]:
     """Verify and decode Cognito JWT."""
     if jwt is None:
         raise HTTPException(
@@ -78,7 +78,7 @@ def _decode_token(token: str) -> dict:
             audience=settings.cognito_client_id,
             options={"verify_exp": True},
         )
-        return claims
+        return cast(dict[str, Any], claims)
     except JWTError as exc:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -87,7 +87,7 @@ def _decode_token(token: str) -> dict:
 
 
 async def get_current_user(
-    credentials: HTTPAuthorizationCredentials | None = Depends(bearerScheme),
+    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
 ) -> UserContext:
     """FastAPI dependency: validate JWT and return UserContext."""
     if settings.demo_mode:
@@ -106,7 +106,7 @@ async def get_current_user(
         )
 
     claims = _decode_token(credentials.credentials)
-    groups: list[str] = claims.get("cognito:groups", [])
+    groups = cast(list[str], claims.get("cognito:groups", []))
     role = groups[0] if groups else "unknown"
 
     return UserContext(
@@ -117,7 +117,7 @@ async def get_current_user(
     )
 
 
-def require_role(allowed_roles: list[str]):
+def require_role(allowed_roles: list[str]) -> Any:
     """FastAPI dependency factory: restrict endpoint to specific roles."""
     async def _dependency(
         user: UserContext = Depends(get_current_user),
@@ -129,3 +129,4 @@ def require_role(allowed_roles: list[str]):
             )
         return user
     return _dependency
+

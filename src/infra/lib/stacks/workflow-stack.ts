@@ -60,10 +60,21 @@ export class WorkflowStack extends cdk.Stack {
       resultPath: '$.notification',
     });
 
+    const updateActionState = new tasks.LambdaInvoke(this, 'UpdateActionState', {
+      lambdaFunction: props.api.apiHandler,
+      payload: sfn.TaskInput.fromObject({
+        action: 'update_action_state',
+        'recommendation_id.$': '$.recommendation_id',
+        'ticket_id.$': '$.ticket.Payload.ticket_id',
+        status: 'completed',
+      }),
+      resultPath: '$.state_update',
+    });
+
     const approvalCheck = new sfn.Choice(this, 'ApprovalCheck')
       .when(
         sfn.Condition.booleanEquals('$.validation.approved', true),
-        createTicket.next(notifyOwner)
+        createTicket.next(notifyOwner).next(updateActionState)
       )
       .otherwise(approvalBlocked);
 

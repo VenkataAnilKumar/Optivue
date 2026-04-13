@@ -2,8 +2,9 @@
 import json
 import logging
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 
 import boto3
 
@@ -61,10 +62,11 @@ def compute_priority_score(
 
 def _build_recommendation(raw: dict) -> dict:
     """Augment a raw Compute Optimizer recommendation with priority fields."""
-    savings = float(raw.get("estimatedMonthlySavings", 0))
+    # Accept both camelCase (AWS Compute Optimizer API) and snake_case (fixtures)
+    savings = float(raw.get("estimatedMonthlySavings") or raw.get("estimated_monthly_savings", 0))
     confidence = float(raw.get("confidence_score", 0.75))
-    effort = raw.get("effort", "medium")
-    risk = raw.get("risk", "medium")
+    effort = raw.get("effort") or raw.get("effort_level", "medium")
+    risk = raw.get("risk") or raw.get("risk_level", "medium")
 
     score, tier = compute_priority_score(savings, confidence, effort, risk)
     needs_review = confidence < settings.confidence_threshold
@@ -77,11 +79,11 @@ def _build_recommendation(raw: dict) -> dict:
         "priority_score": score,
         "priority_tier": tier,
         "needs_review": needs_review,
-        "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+        "data_freshness_timestamp": datetime.now(UTC).isoformat(),
     }
 
 
-def handler(event: dict, context) -> dict:
+def handler(event: dict[str, Any], context: Any) -> dict[str, Any]:
     """Bedrock action group handler for get_recommendations."""
     params = {p["name"]: p["value"] for p in event.get("parameters", [])}
     service_filter = params.get("service", "")
@@ -94,7 +96,7 @@ def handler(event: dict, context) -> dict:
             "recommendations": recs,
             "total": len(recs),
             "demo_mode": True,
-            "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+            "data_freshness_timestamp": datetime.now(UTC).isoformat(),
         }
     else:
         co = boto3.client("compute-optimizer", region_name=settings.aws_region)
@@ -131,11 +133,11 @@ def handler(event: dict, context) -> dict:
             result = {
                 "recommendations": recs,
                 "total": len(recs),
-                "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+                "data_freshness_timestamp": datetime.now(UTC).isoformat(),
             }
         except Exception as exc:  # noqa: BLE001
             logger.error(json.dumps({"error": "recommendations_failed", "detail": str(exc)}))
-            result = {"error": "Recommendations fetch failed.", "data_freshness_timestamp": datetime.now(timezone.utc).isoformat()}
+            result = {"error": "Recommendations fetch failed.", "data_freshness_timestamp": datetime.now(UTC).isoformat()}
 
     return {
         "messageVersion": "1.0",

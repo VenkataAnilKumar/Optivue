@@ -1,6 +1,8 @@
 """Integration tests for the FastAPI application with mocked AWS."""
 import os
+
 import pytest
+
 mock_aws = pytest.importorskip("moto").mock_aws
 import boto3  # noqa: E402
 from fastapi.testclient import TestClient  # noqa: E402

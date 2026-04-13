@@ -34,7 +34,53 @@ export class ApiStack extends cdk.Stack {
       functionName: 'finops-api-handler',
       runtime: lambda.Runtime.PYTHON_3_12,
       handler: 'app.main.handler',
-      code: lambda.Code.fromAsset(path.join(__dirname, '../../../backend')),
+      code: lambda.Code.fromAsset(path.join(__dirname, '../../../backend'), {
+        bundling: {
+          image: lambda.Runtime.PYTHON_3_12.bundlingImage,
+          command: [
+            'bash', '-c',
+            [
+              'pip install -r requirements.txt -t /asset-output --quiet --no-cache-dir',
+              'cp -r app adapters /asset-output/',
+            ].join(' && '),
+          ],
+          // Fallback for machines without Docker: pre-install deps locally
+          local: {
+            tryBundle(outputDir: string): boolean {
+              const { execSync } = require('child_process');
+              const fs = require('fs');
+              const src = path.join(__dirname, '../../../backend');
+              const shouldCopy = (entry: string): boolean => {
+                const base = path.basename(entry);
+                if (base === '__pycache__' || base === '.pytest_cache' || base === 'tests') {
+                  return false;
+                }
+                if (entry.endsWith('.pyc')) {
+                  return false;
+                }
+                return true;
+              };
+              try {
+                execSync(
+                  `python -m pip install -r requirements.txt -t "${outputDir}" --quiet --no-cache-dir`,
+                  { cwd: src, stdio: 'inherit' },
+                );
+                fs.cpSync(path.join(src, 'app'), path.join(outputDir, 'app'), {
+                  recursive: true,
+                  filter: shouldCopy,
+                });
+                fs.cpSync(path.join(src, 'adapters'), path.join(outputDir, 'adapters'), {
+                  recursive: true,
+                  filter: shouldCopy,
+                });
+                return true;
+              } catch {
+                return false;  // fall back to Docker
+              }
+            },
+          },
+        },
+      }),
       role: props.foundation.backendRole,
       memorySize: 512,
       timeout: cdk.Duration.seconds(30),

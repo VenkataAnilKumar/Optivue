@@ -4,7 +4,7 @@ import time
 import uuid
 from contextvars import ContextVar
 
-from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
 from starlette.requests import Request
 from starlette.responses import Response
 
@@ -22,7 +22,7 @@ def get_correlation_id() -> str:
 class RequestLoggingMiddleware(BaseHTTPMiddleware):
     """JSON-structured request/response logging middleware."""
 
-    async def dispatch(self, request: Request, call_next) -> Response:
+    async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> Response:
         correlation_id = str(uuid.uuid4())
         correlation_id_var.set(correlation_id)
         start_time = time.time()

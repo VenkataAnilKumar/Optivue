@@ -1,9 +1,8 @@
 """Bedrock action group handler: evaluate_action_risk."""
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
-
 
 logger = logging.getLogger(__name__)
 
@@ -49,11 +48,11 @@ def evaluate_risk(action_type: str, resource_id: str, environment: str) -> dict[
         "policy_blocked": policy_blocked,
         "block_reason": block_reason,
         "requires_dual_approval": requires_dual_approval,
-        "evaluated_at": datetime.now(timezone.utc).isoformat(),
+        "evaluated_at": datetime.now(UTC).isoformat(),
     }
 
 
-def handler(event: dict, context) -> dict:
+def handler(event: dict[str, Any], context: Any) -> dict[str, Any]:
     """Bedrock action group handler for evaluate_action_risk."""
     params = {p["name"]: p["value"] for p in event.get("parameters", [])}
     action_type = params.get("action_type", "unknown")

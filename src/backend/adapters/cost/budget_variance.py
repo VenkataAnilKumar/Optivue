@@ -1,8 +1,9 @@
 """Bedrock action group handler: get_budget_variance."""
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 
 import boto3
 
@@ -22,7 +23,7 @@ def _variance_status(variance_pct: float) -> str:
     return "over_budget"
 
 
-def handler(event: dict, context) -> dict:
+def handler(event: dict[str, Any], context: Any) -> dict[str, Any]:
     """Bedrock action group handler for get_budget_variance."""
     if settings.demo_mode:
         fixture_path = FIXTURES_DIR / "sample-cost-data.json"
@@ -30,7 +31,7 @@ def handler(event: dict, context) -> dict:
         result = {
             "budgets": data.get("budgets", []),
             "demo_mode": True,
-            "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+            "data_freshness_timestamp": datetime.now(UTC).isoformat(),
         }
     else:
         budgets_client = boto3.client("budgets", region_name=settings.aws_region)
@@ -56,11 +57,11 @@ def handler(event: dict, context) -> dict:
                 })
             result = {
                 "budgets": budgets,
-                "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+                "data_freshness_timestamp": datetime.now(UTC).isoformat(),
             }
         except Exception as exc:  # noqa: BLE001
             logger.error(json.dumps({"error": "budget_variance_failed", "detail": str(exc)}))
-            result = {"error": "Budget variance query failed.", "data_freshness_timestamp": datetime.now(timezone.utc).isoformat()}
+            result = {"error": "Budget variance query failed.", "data_freshness_timestamp": datetime.now(UTC).isoformat()}
 
     return {
         "messageVersion": "1.0",

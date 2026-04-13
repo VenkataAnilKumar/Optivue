@@ -1,7 +1,7 @@
 """Slack/Teams notification adapter for action ownership."""
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 import boto3
@@ -23,9 +23,13 @@ def _get_webhook_url() -> str:
     return secret["webhook_url"]
 
 
-def _build_slack_blocks(recommendation_id: str, ticket_url: str, actor: str) -> list[dict]:
+def _build_slack_blocks(
+    recommendation_id: str,
+    ticket_url: str | None,
+    actor: str,
+) -> list[dict[str, Any]]:
     """Build Slack Block Kit message for owner notification."""
-    return [
+    blocks: list[dict[str, Any]] = [
         {
             "type": "header",
             "text": {"type": "plain_text", "text": ":money_with_wings: FinOps Action Approved"},
@@ -37,23 +41,27 @@ def _build_slack_blocks(recommendation_id: str, ticket_url: str, actor: str) -> 
                 {"type": "mrkdwn", "text": f"*Approved by:*\n{actor}"},
             ],
         },
-        {
-            "type": "actions",
-            "elements": [
-                {
-                    "type": "button",
-                    "text": {"type": "plain_text", "text": "View Jira Ticket"},
-                    "url": ticket_url,
-                    "style": "primary",
-                }
-            ],
-        },
     ]
+    if ticket_url:
+        blocks.append(
+            {
+                "type": "actions",
+                "elements": [
+                    {
+                        "type": "button",
+                        "text": {"type": "plain_text", "text": "View Jira Ticket"},
+                        "url": ticket_url,
+                        "style": "primary",
+                    }
+                ],
+            }
+        )
+    return blocks
 
 
 async def send_owner_notification(
     recommendation_id: str,
-    ticket_url: str,
+    ticket_url: str | None,
     actor: str,
     channel: str = "#finops-actions",
 ) -> dict[str, Any]:
@@ -96,14 +104,15 @@ async def send_owner_notification(
     table = dynamo.Table(settings.action_history_table_name)
     table.put_item(Item={
         "pk": f"ACTION#{recommendation_id}",
-        "sk": f"HISTORY#{datetime.now(timezone.utc).isoformat()}",
+        "sk": f"HISTORY#{datetime.now(UTC).isoformat()}",
         "event_type": "owner_notified",
         "recommendation_id": recommendation_id,
-        "ticket_url": ticket_url,
+        "ticket_url": ticket_url or "",
         "channel": channel,
         "actor": actor,
         "notification_sent": result["notification_sent"],
-        "created_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": datetime.now(UTC).isoformat(),
     })
 
     return result
+

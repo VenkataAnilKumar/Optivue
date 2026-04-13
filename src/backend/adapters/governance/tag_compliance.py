@@ -1,7 +1,8 @@
 """Bedrock action group handler: check_tag_compliance."""
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
+from typing import Any
 
 import boto3
 
@@ -12,7 +13,7 @@ logger = logging.getLogger(__name__)
 _REQUIRED_TAGS = ["environment", "team", "product", "cost-center"]
 
 
-def handler(event: dict, context) -> dict:
+def handler(event: dict[str, Any], context: Any) -> dict[str, Any]:
     """Bedrock action group handler for check_tag_compliance."""
     params = {p["name"]: p["value"] for p in event.get("parameters", [])}
     resource_type_filter = params.get("resource_type", "")
@@ -29,7 +30,7 @@ def handler(event: dict, context) -> dict:
                 {"resource_id": "i-demo5678", "missing_tags": ["team"]},
             ],
             "demo_mode": True,
-            "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+            "data_freshness_timestamp": datetime.now(UTC).isoformat(),
         }
     else:
         config = boto3.client("config", region_name=settings.aws_region)
@@ -63,11 +64,11 @@ def handler(event: dict, context) -> dict:
                 "compliance_percentage": round(compliance_pct, 1),
                 "required_tags": _REQUIRED_TAGS,
                 "top_violators": non_compliant[:10],
-                "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+                "data_freshness_timestamp": datetime.now(UTC).isoformat(),
             }
         except Exception as exc:  # noqa: BLE001
             logger.error(json.dumps({"error": "tag_compliance_failed", "detail": str(exc)}))
-            result = {"error": "Tag compliance check failed.", "data_freshness_timestamp": datetime.now(timezone.utc).isoformat()}
+            result = {"error": "Tag compliance check failed.", "data_freshness_timestamp": datetime.now(UTC).isoformat()}
 
     return {
         "messageVersion": "1.0",

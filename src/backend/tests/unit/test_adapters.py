@@ -2,7 +2,6 @@
 import json
 import os
 
-
 os.environ["DEMO_MODE"] = "true"
 
 

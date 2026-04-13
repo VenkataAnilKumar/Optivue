@@ -2,7 +2,6 @@
 
 from adapters.optimization.recommendations import compute_priority_score
 
-
 # ---------------------------------------------------------------------------
 # Priority tier boundary tests (non-negotiable from project spec)
 # ---------------------------------------------------------------------------

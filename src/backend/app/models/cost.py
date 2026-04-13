@@ -1,7 +1,7 @@
 """Pydantic v2 models for cost queries and forecasts."""
 from __future__ import annotations
 
-from typing import Annotated, Literal, Optional
+from typing import Annotated, Literal
 
 from pydantic import BaseModel, Field
 
@@ -9,7 +9,7 @@ from pydantic import BaseModel, Field
 class CostDriver(BaseModel):
     service: str
     cost: Annotated[float, Field(ge=0.0)]
-    pct_of_total: Optional[float] = None
+    pct_of_total: float | None = None
 
 
 class CostQueryResponse(BaseModel):

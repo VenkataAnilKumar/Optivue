@@ -1,5 +1,8 @@
+from typing import Any
+
 from fastapi import APIRouter, Depends
-from app.services.auth_service import get_current_user, UserContext
+
+from app.services.auth_service import UserContext, get_current_user
 from app.services.bedrock_service import invoke_agent
 
 router = APIRouter()
@@ -9,7 +12,7 @@ router = APIRouter()
 async def explain_anomaly(
     anomaly_id: str,
     user: UserContext = Depends(get_current_user),
-) -> dict:
+) -> dict[str, Any]:
     """Anomaly explanation with top cost drivers (FR-2)."""
     prompt = f"Explain the cost anomaly with ID {anomaly_id}. Identify the top drivers and likely owner."
     response = await invoke_agent(
@@ -23,7 +26,7 @@ async def explain_anomaly(
 @router.get("/")
 async def list_anomalies(
     user: UserContext = Depends(get_current_user),
-) -> dict:
+) -> dict[str, Any]:
     """List recent cost anomalies."""
     prompt = "List recent cost anomalies with severity, impact amount, and likely owners."
     response = await invoke_agent(

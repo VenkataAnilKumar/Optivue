@@ -1,7 +1,7 @@
 """Pydantic v2 models for approval and action orchestration."""
 from __future__ import annotations
 
-from typing import Literal, Optional
+from typing import Literal
 
 from pydantic import BaseModel
 
@@ -27,8 +27,8 @@ class ActionExecuteRequest(BaseModel):
     recommendation_id: str
     approval_token: str
     action_type: str
-    title: Optional[str] = None
-    description: Optional[str] = None
+    title: str | None = None
+    description: str | None = None
 
 
 class ActionExecuteResponse(BaseModel):

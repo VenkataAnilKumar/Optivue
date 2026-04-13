@@ -2,8 +2,9 @@
 import json
 import logging
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 
 import boto3
 
@@ -45,7 +46,7 @@ def _run_athena_query(sql: str) -> list[dict]:
     return rows
 
 
-def handler(event: dict, context) -> dict:
+def handler(event: dict[str, Any], context: Any) -> dict[str, Any]:
     """Bedrock action group handler for get_cost_by_period."""
     params = {p["name"]: p["value"] for p in event.get("parameters", [])}
     period = params.get("period", "last_month")
@@ -55,7 +56,7 @@ def handler(event: dict, context) -> dict:
         fixture_path = FIXTURES_DIR / "sample-cost-data.json"
         result = json.loads(fixture_path.read_text()) if fixture_path.exists() else {}
         result["demo_mode"] = True
-        result["data_freshness_timestamp"] = datetime.now(timezone.utc).isoformat()
+        result["data_freshness_timestamp"] = datetime.now(UTC).isoformat()
     else:
         sql = f"""
             SELECT line_item_product_code AS service,
@@ -78,12 +79,12 @@ def handler(event: dict, context) -> dict:
                     {"service": r["service"], "cost": round(float(r["cost"]), 2)}
                     for r in rows
                 ],
-                "data_freshness_timestamp": datetime.now(timezone.utc).isoformat(),
+                "data_freshness_timestamp": datetime.now(UTC).isoformat(),
                 "data_completeness_pct": 100.0,
             }
         except Exception as exc:  # noqa: BLE001
             logger.error(json.dumps({"error": "athena_query_failed", "detail": str(exc)}))
-            result = {"error": "Cost query failed. Please retry.", "data_freshness_timestamp": datetime.now(timezone.utc).isoformat()}
+            result = {"error": "Cost query failed. Please retry.", "data_freshness_timestamp": datetime.now(UTC).isoformat()}
 
     return {
         "messageVersion": "1.0",

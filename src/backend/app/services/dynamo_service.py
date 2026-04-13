@@ -1,6 +1,7 @@
 """DynamoDB operations for recommendations, approvals, and action history."""
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
+from typing import Any, cast
 
 import boto3
 from boto3.dynamodb.conditions import Key
@@ -10,16 +11,16 @@ from app.config import settings
 logger = logging.getLogger(__name__)
 
 
-def _dynamodb_resource():
+def _dynamodb_resource() -> Any:
     return boto3.resource("dynamodb", region_name=settings.aws_region)
 
 
-async def save_recommendation(recommendation: dict) -> str:
+async def save_recommendation(recommendation: dict[str, Any]) -> str:
     """Persist a recommendation to DynamoDB."""
     db = _dynamodb_resource()
     table = db.Table(settings.dynamodb_recommendations_table)
-    rec_id = recommendation["recommendation_id"]
-    now = datetime.now(timezone.utc).isoformat()
+    rec_id = cast(str, recommendation["recommendation_id"])
+    now = datetime.now(UTC).isoformat()
     item = {
         "pk": f"REC#{rec_id}",
         "sk": "METADATA",
@@ -37,16 +38,16 @@ async def save_recommendation(recommendation: dict) -> str:
 async def get_recommendations_for_owner(
     owner: str,
     priority_tier: str | None = None,
-) -> list[dict]:
+) -> list[dict[str, Any]]:
     """Query recommendations by owner using GSI (by-owner-status-index)."""
     db = _dynamodb_resource()
     table = db.Table(settings.dynamodb_recommendations_table)
-    kwargs: dict = {
+    kwargs: dict[str, Any] = {
         "IndexName": "by-owner-status-index",
         "KeyConditionExpression": Key("owner").eq(owner),
     }
     response = table.query(**kwargs)
-    items = response.get("Items", [])
+    items = cast(list[dict[str, Any]], response.get("Items", []))
     if priority_tier:
         items = [i for i in items if i.get("priority_tier") == priority_tier]
     return items
@@ -60,7 +61,7 @@ async def update_recommendation_status(
     """Update recommendation status and append to status history trail."""
     db = _dynamodb_resource()
     table = db.Table(settings.dynamodb_recommendations_table)
-    now = datetime.now(timezone.utc).isoformat()
+    now = datetime.now(UTC).isoformat()
     table.update_item(
         Key={"pk": f"REC#{recommendation_id}", "sk": "METADATA"},
         UpdateExpression="SET #status = :status, updated_at = :now, last_actor = :actor",
@@ -81,11 +82,11 @@ async def update_recommendation_status(
     })
 
 
-async def append_action_history(action: dict) -> None:
+async def append_action_history(action: dict[str, Any]) -> None:
     """Append-only write to finops-action-history (never update or delete)."""
     db = _dynamodb_resource()
     table = db.Table(settings.dynamodb_action_history_table)
-    now = datetime.now(timezone.utc).isoformat()
+    now = datetime.now(UTC).isoformat()
     table.put_item(Item={
         "pk": f"ACTION#{action['action_id']}",
         "sk": "METADATA",
@@ -99,3 +100,4 @@ async def append_action_history(action: dict) -> None:
             "action_id", "recommendation_id", "actor", "actor_role", "action_type", "result"
         )},
     })
+

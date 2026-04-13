@@ -3,7 +3,7 @@ import json
 import logging
 import re
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import boto3
 
@@ -21,13 +21,13 @@ _DEMO_ROUTES = [
 ]
 
 
-def _demo_response(prompt: str) -> dict:
+def _demo_response(prompt: str) -> dict[str, Any]:
     """Return fixture data matched to prompt keywords."""
     for pattern, filename in _DEMO_ROUTES:
         if pattern.search(prompt):
             fixture_path = FIXTURES_DIR / filename
             if fixture_path.exists():
-                data = json.loads(fixture_path.read_text())
+                data = cast(dict[str, Any], json.loads(fixture_path.read_text()))
                 data["demo_mode"] = True
                 return data
     return {"message": "Demo mode active. No matching fixture.", "demo_mode": True}
@@ -37,7 +37,7 @@ async def invoke_agent(
     session_id: str,
     prompt: str,
     context: dict[str, Any] | None = None,
-) -> dict:
+) -> dict[str, Any]:
     """Invoke Bedrock Agents Runtime and stream response chunks.
 
     Returns the completed agent response as a dict with a 'response' key.
@@ -51,9 +51,10 @@ async def invoke_agent(
         return {"error": "Bedrock agent not configured", "response": ""}
 
     client = boto3.client("bedrock-agent-runtime", region_name=settings.aws_region)
-    session_attributes: dict = {}
+    session_attributes: dict[str, str] = {}
     if context:
         session_attributes = {k: str(v) for k, v in context.items()}
+
 
     try:
         result = client.invoke_agent(
