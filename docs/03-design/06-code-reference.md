@@ -1,7 +1,7 @@
-# FinOps Agent — Code Reference
+# Optivue — Code Reference
 
 ## Purpose
-This document is the authoritative developer reference for the FinOps Agent codebase.
+This document is the authoritative developer reference for the Optivue codebase.
 It covers repo layout, stack versions, module responsibilities, code patterns, environment variables,
 dependencies, and local development setup. Read this before writing any code.
 
@@ -366,7 +366,7 @@ from mangum import Mangum
 from app.routers import cost, anomalies, recommendations, actions, kpi
 from app.config import settings
 
-app = FastAPI(title="FinOps Agent API", version="0.1.0")
+app = FastAPI(title="Optivue API", version="0.1.0")
 
 app.include_router(cost.router, prefix="/cost", tags=["cost"])
 app.include_router(anomalies.router, prefix="/anomalies", tags=["anomalies"])
@@ -1210,3 +1210,4 @@ cd ../frontend && npm run test
 - Bedrock samples: https://github.com/aws-samples/amazon-bedrock-samples
 - AgentCore samples: https://github.com/awslabs/agentcore-samples
 - Agent Evaluation: https://github.com/awslabs/agent-evaluation
+

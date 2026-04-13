@@ -1,14 +1,14 @@
-# FinOps Agent Product Definition (PRD)
+# Optivue Product Definition (PRD)
 
 ## 1) Document Control
-- Product: FinOps Agent
+- Product: Optivue
 - Version: 1.0
 - Date: 2026-04-13
 - Status: Draft for stakeholder review
 - Product Type: AI-native FinOps operations assistant and action orchestrator
 
 ## 2) Executive Summary
-FinOps teams still spend too much time in manual analysis, dashboard stitching, and follow-up coordination before optimization actions happen. The FinOps Agent closes that gap by moving from observation to orchestration: it explains spend, detects and investigates anomalies, recommends ranked optimizations, and routes approved actions into engineering workflows.
+FinOps teams still spend too much time in manual analysis, dashboard stitching, and follow-up coordination before optimization actions happen. The Optivue closes that gap by moving from observation to orchestration: it explains spend, detects and investigates anomalies, recommends ranked optimizations, and routes approved actions into engineering workflows.
 
 The product combines:
 - Natural language analytics for cloud cost and value
@@ -32,7 +32,7 @@ Core business outcome: reduce cloud waste and time-to-action while increasing ac
 - Cloud providers now expose APIs for anomaly detection, rightsizing, commitments, and recommendations that can be orchestrated by agents.
 
 ## 4) Opportunity and Product Thesis
-If we provide a FinOps agent that can:
+If we provide a Optivue that can:
 1. Understand spend and business context,
 2. Investigate anomalies and waste autonomously,
 3. Route recommendations to the right owners with evidence,
@@ -95,7 +95,7 @@ AWS service research indicates strong API-ready building blocks:
 - Trusted Advisor: best-practice optimization and remediation checks
 
 Implication for product:
-- The FinOps Agent should orchestrate existing systems rather than replicate them.
+- The Optivue should orchestrate existing systems rather than replicate them.
 - Primary defensibility is workflow intelligence, contextualization, and realization tracking.
 
 ### 5.5 Data Standardization
@@ -431,4 +431,5 @@ Research references used in this PRD synthesis:
 - AWS Trusted Advisor: https://aws.amazon.com/premiumsupport/technology/trusted-advisor/
 
 ## 24) Final Recommendation
-Proceed with an AWS-first, human-in-the-loop FinOps Agent MVP focused on anomaly triage, ranked optimization recommendations, and action lifecycle tracking. This scope has the highest probability of near-term realized savings and the lowest operational risk while establishing the data and governance foundations needed for broader autonomous FinOps operations.
+Proceed with an AWS-first, human-in-the-loop Optivue MVP focused on anomaly triage, ranked optimization recommendations, and action lifecycle tracking. This scope has the highest probability of near-term realized savings and the lowest operational risk while establishing the data and governance foundations needed for broader autonomous FinOps operations.
+

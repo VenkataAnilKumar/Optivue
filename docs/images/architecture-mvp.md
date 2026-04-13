@@ -1,4 +1,4 @@
-# FinOps Agent MVP Architecture Diagram
+# Optivue MVP Architecture Diagram
 
 ```mermaid
 flowchart LR
@@ -37,3 +37,4 @@ flowchart LR
   F --> CW[CloudWatch Logs/Metrics]
   SUP --> TR[Bedrock Traces]
 ```
+

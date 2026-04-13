@@ -1,7 +1,7 @@
 # Bedrock Agent Instructions
 
 ## Overview
-The FinOps Agent system uses a supervisor agent that orchestrates three specialist agents.
+The Optivue system uses a supervisor agent that orchestrates three specialist agents.
 Each agent has a distinct instruction set, tool scope, and guardrail policy.
 
 ---
@@ -195,3 +195,4 @@ Each specialist agent should reason step-by-step before producing output:
 - Bedrock Agent best practices part 1: https://aws.amazon.com/blogs/machine-learning/best-practices-for-building-robust-generative-ai-applications-with-amazon-bedrock-agents-part-1/
 - Bedrock Agent best practices part 2: https://aws.amazon.com/blogs/machine-learning/best-practices-for-building-robust-generative-ai-applications-with-amazon-bedrock-agents-part-2/
 - AgentCore samples: https://github.com/awslabs/agentcore-samples
+

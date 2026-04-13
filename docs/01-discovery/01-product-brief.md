@@ -1,7 +1,7 @@
 # Product Brief
 
 ## 1. Project Summary
-- Product name: FinOps Agent
+- Product name: Optivue
 - Type: Job-focused MVP portfolio project
 - Version: 0.1
 - Date: 2026-04-13
@@ -57,3 +57,4 @@ AWS docs:
 Code references:
 - https://github.com/aws-samples/amazon-bedrock-samples/tree/main/agents-and-function-calling/bedrock-agents
 - https://github.com/awslabs/agentcore-samples
+

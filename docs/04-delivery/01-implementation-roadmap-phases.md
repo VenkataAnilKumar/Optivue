@@ -1,7 +1,7 @@
-# FinOps Agent Implementation Roadmap (Multi-Phase)
+# Optivue Implementation Roadmap (Multi-Phase)
 
 ## Roadmap Summary
-- Product: FinOps Agent MVP
+- Product: Optivue MVP
 - Duration: 12 weeks (MVP) + optional post-MVP expansion
 - Approach: AWS-first, serverless-first, human-in-the-loop action model
 - Primary outcome: move from cost insight to measurable savings actions
@@ -271,3 +271,4 @@ Move from MVP to advanced capability and stronger production posture.
 - User can approve and trigger ticket plus notification workflow.
 - System tracks recommendation lifecycle and basic realized savings metrics.
 - Documentation and demo assets are complete for interview showcase.
+

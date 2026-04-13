@@ -1,4 +1,4 @@
-# FinOps Agent MVP Sprint Plan (12 Weeks)
+# Optivue MVP Sprint Plan (12 Weeks)
 
 ## How to Use
 - Sprint length: 2 weeks
@@ -183,3 +183,4 @@ Ship MVP and make portfolio interview-ready.
 - How safety and governance were handled:
 - Measurable outcomes achieved:
 - What you would build next:
+

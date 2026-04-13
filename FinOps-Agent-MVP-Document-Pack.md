@@ -1,7 +1,7 @@
-# FinOps Agent MVP Document Pack (Job-Focused)
+# Optivue MVP Document Pack (Job-Focused)
 
 ## Purpose
-This document defines the minimum documentation set required to build and present a job-ready FinOps Agent MVP. It includes direct AWS documentation and code references for implementation.
+This document defines the minimum documentation set required to build and present a job-ready Optivue MVP. It includes direct AWS documentation and code references for implementation.
 
 ## Scope
 MVP capabilities:
@@ -232,3 +232,4 @@ FinOps/
 - Bedrock samples repo: https://github.com/aws-samples/amazon-bedrock-samples
 - AgentCore samples repo: https://github.com/awslabs/agentcore-samples
 - Agent Evaluation: https://github.com/awslabs/agent-evaluation
+

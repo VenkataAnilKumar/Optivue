@@ -1,4 +1,4 @@
-# FinOps Agent — Repository Structure
+# Optivue — Repository Structure
 
 ## Overview
 Monorepo with a single `src/` root containing four packages:
@@ -337,3 +337,4 @@ bash scripts/setup/seed-fixtures.sh
 - Code patterns: docs/03-design/06-code-reference.md
 - Build prompts: docs/04-delivery/05-copilot-build-prompts.md
 - Copilot context: .github/copilot-instructions.md
+

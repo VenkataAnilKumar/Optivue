@@ -1,8 +1,8 @@
-# FinOps Agent
+# Optivue
 
 > An AWS-native, human-in-the-loop AI assistant that turns cloud cost data into actionable optimization workflows.
 
-Engineering and finance teams spend significant time manually triaging cost spikes, writing up Jira tickets, and chasing down resource owners. FinOps Agent replaces that toil with a conversational AI layer that queries live AWS cost data, explains anomalies, ranks savings opportunities, routes approvals, and notifies owners — all with a mandatory human gate before any change is made.
+Engineering and finance teams spend significant time manually triaging cost spikes, writing up Jira tickets, and chasing down resource owners. Optivue replaces that toil with a conversational AI layer that queries live AWS cost data, explains anomalies, ranks savings opportunities, routes approvals, and notifies owners — all with a mandatory human gate before any change is made.
 
 ---
 
@@ -216,3 +216,4 @@ All AWS service calls return data from `fixtures/` when demo mode is active.
 | Bedrock agent samples | https://github.com/aws-samples/amazon-bedrock-samples |
 | AgentCore samples | https://github.com/awslabs/agentcore-samples |
 | Agent evaluation | https://github.com/awslabs/agent-evaluation |
+

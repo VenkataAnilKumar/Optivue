@@ -1,7 +1,7 @@
 # PRD Lite
 
 ## 1. Overview
-- Product: FinOps Agent MVP
+- Product: Optivue MVP
 - Objective: Build an AWS-first, human-in-the-loop AI assistant that turns cost analysis into actionable optimization workflows.
 - Release target: 12-week MVP (internal demo + pilot-ready)
 
@@ -68,3 +68,4 @@ AWS docs:
 Code references:
 - https://github.com/aws-samples/amazon-bedrock-samples
 - https://github.com/awslabs/agent-evaluation
+
