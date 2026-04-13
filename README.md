@@ -83,16 +83,11 @@ Optivue: ✅ Approval token validated. Executing...
 
 ## Features at a Glance
 
-✅ **Natural language cost queries** — "Show me top cost drivers" → AI investigates your AWS account, returns ranked insights  
-✅ **Real-time anomaly root cause** — Cost spike? AI pinpoints root cause, likely drivers, and owner in <8s  
-✅ **Ranked recommendations** — P1/P2/P3 scored by impact × confidence × risk, auto-routed at ≥70% confidence  
-✅ **Approval-gated action workflow** — Every action (Jira + Slack) requires explicit human approval token  
-✅ **Dual-approval for production** — Rightsizing and commitments need two independent approvals (EM + finops-analyst)  
-✅ **Production deletions blocked** — System returns `policy_blocked` on any production deletion attempt — non-negotiable  
-✅ **Grounded responses** — Every cost figure from live Cost Explorer / Athena / Compute Optimizer APIs. Zero hallucinations  
-✅ **Role-based access control** — 4 Cognito groups with scoped dashboards and output filtering  
-✅ **Full audit trail** — Every approval, ticket, and action logged to DynamoDB with actor + timestamp  
-✅ **Demo mode** — `DEMO_MODE=true` runs end-to-end with fixture data — great for local dev and interviews  
+🎯 **Chat with your AWS bill** — Ask "Why are costs up?" and get instant, grounded answers  
+🎯 **Ranked savings opportunities** — Every recommendation scored by impact, confidence, and effort  
+🎯 **One-click approvals** — Turn recommendations into Jira tickets and Slack notifications in seconds  
+🎯 **Production safety first** — Dual approval required. Deletions blocked. Zero autonomous mutations  
+🎯 **Demo mode included** — Try it locally with fixture data before deploying to AWS  
 
 ---
 
