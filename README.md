@@ -1,8 +1,8 @@
 # Optivue
 
-> An AWS-native, human-in-the-loop AI assistant that turns cloud cost data into actionable optimization workflows.
+> Optivue: Turn cloud cost insight into approved action.
 
-Engineering and finance teams spend significant time manually triaging cost spikes, writing up Jira tickets, and chasing down resource owners. Optivue replaces that toil with a conversational AI layer that queries live AWS cost data, explains anomalies, ranks savings opportunities, routes approvals, and notifies owners — all with a mandatory human gate before any change is made.
+Optivue is an AWS-first, human-in-the-loop FinOps platform that helps organizations reduce cloud waste by converting cost visibility into governed execution. It combines AI-powered anomaly investigation, prioritized optimization recommendations, and approval-gated workflows to accelerate realized savings while maintaining operational control and auditability.
 
 ---
 

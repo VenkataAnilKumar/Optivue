@@ -12,7 +12,7 @@ Two ready-to-speak scripts. Practice out loud. Time yourself. Aim for natural pa
 
 ---
 
-"I built a Optivue using AWS and Amazon Bedrock Agents.
+"I built Optivue using AWS and Amazon Bedrock Agents.
 
 The problem I was solving is that FinOps teams can see cloud cost issues in dashboards, but the actual work of investigating anomalies, prioritizing fixes, and routing actions to engineers is still slow and manual. That gap between insight and action is where a lot of savings potential gets lost.
 

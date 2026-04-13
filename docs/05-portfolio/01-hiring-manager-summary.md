@@ -1,7 +1,7 @@
 # Hiring Manager Summary: Optivue
 
 ## Candidate Project Snapshot
-I built an AWS-first Optivue that converts cloud cost insight into action. The product helps teams investigate anomalies, prioritize savings opportunities, and trigger approved remediation workflows with full traceability.
+Optivue is an AWS-first, human-in-the-loop FinOps platform that helps organizations reduce cloud waste by converting cost visibility into governed execution. It combines AI-powered anomaly investigation, prioritized optimization recommendations, and approval-gated workflows to accelerate realized savings while maintaining operational control and auditability.
 
 ## Why this project matters
 Cloud cost optimization often breaks at the handoff between analysis and execution. Teams can identify issues, but action routing, ownership, and follow-through are usually manual and slow. This project solves that bottleneck with an end-to-end, human-in-the-loop workflow.

@@ -8,7 +8,9 @@
 - Product Type: AI-native FinOps operations assistant and action orchestrator
 
 ## 2) Executive Summary
-FinOps teams still spend too much time in manual analysis, dashboard stitching, and follow-up coordination before optimization actions happen. The Optivue closes that gap by moving from observation to orchestration: it explains spend, detects and investigates anomalies, recommends ranked optimizations, and routes approved actions into engineering workflows.
+Optivue: Turn cloud cost insight into approved action.
+
+Optivue is an AWS-first, human-in-the-loop FinOps platform that helps organizations reduce cloud waste by converting cost visibility into governed execution. It combines AI-powered anomaly investigation, prioritized optimization recommendations, and approval-gated workflows to accelerate realized savings while maintaining operational control and auditability.
 
 The product combines:
 - Natural language analytics for cloud cost and value
