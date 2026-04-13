@@ -1,7 +1,7 @@
 # Database Schema
 
 ## Overview
-The FinOps Agent uses Amazon DynamoDB for operational state — recommendation lifecycle,
+The Optivue uses Amazon DynamoDB for operational state — recommendation lifecycle,
 approval records, action history, and KPI metrics. S3 + Athena handles the analytical
 cost data (read via CUR/Data Exports).
 
@@ -329,3 +329,4 @@ recommendationsTable.addGlobalSecondaryIndex({
 ## References
 - DynamoDB single-table design patterns: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html
 - DynamoDB CDK construct: https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_dynamodb.Table.html
+

@@ -1,9 +1,9 @@
-# Resume Bullet Pack: FinOps Agent MVP
+# Resume Bullet Pack: Optivue
 
 Use these bullets directly in resumes, LinkedIn, and job applications. Replace bracketed placeholders with your final metrics.
 
 ## AI Engineer Role Bullets
-- Designed and built an AWS-first FinOps Agent MVP that transformed cloud cost analysis into action workflows using Amazon Bedrock Agents, Python FastAPI, and Next.js.
+- Designed and built an AWS-first Optivue that transformed cloud cost analysis into action workflows using Amazon Bedrock Agents, Python FastAPI, and Next.js.
 - Implemented natural-language cost intelligence and anomaly explanation pipelines over AWS Cost Explorer, Cost Anomaly Detection, and Athena-backed CUR/Data Exports.
 - Built a recommendation engine that ranked optimization actions by estimated savings, confidence, effort, and risk, improving recommendation quality and prioritization clarity.
 - Developed human-in-the-loop action controls with explicit approvals before ticketing and notifications, enforcing safety for production-impacting operations.
@@ -37,7 +37,7 @@ Use these as conservative defaults and update with your latest run:
 - Maintained 0 unauthorized action executions through approval-gated workflow enforcement.
 
 ## Interview One-Liner Variants
-- Built a Bedrock-powered FinOps Agent that turns cloud spend anomalies into approved Jira and Slack actions with measurable savings outcomes.
+- Built a Bedrock-powered Optivue that turns cloud spend anomalies into approved Jira and Slack actions with measurable savings outcomes.
 - Shipped an AWS-native, serverless FinOps copilot that closes the gap between cost visibility and remediation execution.
 - Implemented a production-style AI operations product with modern full stack architecture, governance controls, and KPI-driven delivery.
 
@@ -46,3 +46,4 @@ Use these as conservative defaults and update with your latest run:
 - For Cloud roles, prioritize infrastructure, security, IAM, and reliability bullets.
 - For Full Stack roles, prioritize UX flows, API integration, and end-to-end delivery bullets.
 - Keep 4-6 bullets per project on resume; move extras to LinkedIn or portfolio pages.
+

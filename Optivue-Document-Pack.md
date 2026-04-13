@@ -170,8 +170,8 @@ MVP capabilities:
 ```
 FinOps/
 ├── README.md
-├── FinOps-Agent-Product-Definition.md
-├── FinOps-Agent-MVP-Document-Pack.md
+├── Optivue-Product-Definition.md
+├── Optivue-Document-Pack.md
 ├── docs/
 │   ├── 01-discovery/
 │   │   ├── 01-product-brief.md
@@ -232,4 +232,5 @@ FinOps/
 - Bedrock samples repo: https://github.com/aws-samples/amazon-bedrock-samples
 - AgentCore samples repo: https://github.com/awslabs/agentcore-samples
 - Agent Evaluation: https://github.com/awslabs/agent-evaluation
+
 

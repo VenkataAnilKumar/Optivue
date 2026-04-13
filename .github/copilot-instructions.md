@@ -1,7 +1,7 @@
-# FinOps Agent — GitHub Copilot Workspace Instructions
+# Optivue — GitHub Copilot Workspace Instructions
 
 ## Product Identity
-**FinOps Agent MVP** — An AWS-first, human-in-the-loop AI assistant that turns cloud cost data into actionable optimization workflows. It combines natural language analytics, agentic anomaly investigation, ranked savings recommendations, and safe action execution with approval gating.
+**Optivue** — An AWS-first, human-in-the-loop AI assistant that turns cloud cost data into actionable optimization workflows. It combines natural language analytics, agentic anomaly investigation, ranked savings recommendations, and safe action execution with approval gating.
 
 ## Stack and Services
 | Layer | Technology |
@@ -190,3 +190,4 @@ ValidateApproval → [approved?]
 - [Database Schema](docs/03-design/04-database-schema.md)
 - [PRD Lite](docs/02-definition/01-prd-lite.md)
 - [Implementation Roadmap](docs/04-delivery/01-implementation-roadmap-phases.md)
+

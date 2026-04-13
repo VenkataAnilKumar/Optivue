@@ -1,4 +1,4 @@
-# Interview Q and A Sheet: FinOps Agent MVP
+# Interview Q and A Sheet: Optivue
 
 Use this sheet for recruiter screens, technical rounds, and system design interviews.
 
@@ -103,4 +103,5 @@ A.
 - Result: Actionable path from recommendation to tracked execution.
 
 ## 8) 60-Second Project Pitch
-I built a FinOps Agent MVP on AWS that turns cloud cost insights into approved engineering actions. It uses Bedrock Agents for orchestration, Athena and AWS cost services for grounded analysis, and Step Functions to route approved recommendations into Jira and Slack. The design is secure and auditable with role checks, approval gates, and lifecycle metrics so teams can track identified versus realized savings.
+I built a Optivue on AWS that turns cloud cost insights into approved engineering actions. It uses Bedrock Agents for orchestration, Athena and AWS cost services for grounded analysis, and Step Functions to route approved recommendations into Jira and Slack. The design is secure and auditable with role checks, approval gates, and lifecycle metrics so teams can track identified versus realized savings.
+

@@ -420,7 +420,7 @@ Exit criteria:
 Research references used in this PRD synthesis:
 - FinOps Foundation Principles: https://www.finops.org/framework/principles/
 - FinOps Framework and Capabilities: https://www.finops.org/framework/ and https://www.finops.org/framework/capabilities/
-- FinOps Agentic Use Cases Insight (2026): https://www.finops.org/insights/ai-for-finops-agentic-use-cases/
+ - Agentic FinOps Use Cases Insight (2026): https://www.finops.org/insights/ai-for-finops-agentic-use-cases/
 - FOCUS specification hub: https://focus.finops.org/
 - AWS Cost Explorer: https://aws.amazon.com/aws-cost-management/aws-cost-explorer/
 - AWS Cost Anomaly Detection: https://aws.amazon.com/aws-cost-management/aws-cost-anomaly-detection/

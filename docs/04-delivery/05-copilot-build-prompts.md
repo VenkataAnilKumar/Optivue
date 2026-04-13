@@ -1,4 +1,4 @@
-# FinOps Agent — GitHub Copilot Build Prompts (Phase by Phase)
+# Optivue — GitHub Copilot Build Prompts (Phase by Phase)
 
 ## How to Use
 1. Open GitHub Copilot Chat (`Ctrl+Shift+I`) or Copilot Workspace.
@@ -29,7 +29,7 @@ Full structure: `docs/03-design/07-repo-structure.md`
 ```
 @workspace
 
-I am starting Phase 0 of the FinOps Agent MVP project.
+I am starting Phase 0 of the Optivue project.
 
 Context:
 - All documentation is complete in docs/ (01-discovery through 05-portfolio).
@@ -657,7 +657,7 @@ Context:
 - Portfolio docs: docs/05-portfolio/.
 - DEMO_MODE=true + fixtures/ ensures demo reliability without live dependencies.
 - MVP Definition of Done: docs/04-delivery/01-implementation-roadmap-phases.md (end of file).
-- Interview checklist: FinOps-Agent-MVP-Document-Pack.md Interview-Ready Completion Checklist.
+- Interview checklist: Optivue-Document-Pack.md Interview-Ready Completion Checklist.
 
 Tasks:
 1. Run the full demo script end-to-end (docs/04-delivery/04-demo-script.md):
@@ -697,10 +697,10 @@ Tasks:
 4. Final cross-reference validation — confirm all paths resolve:
    - All links in README.md → files exist in docs/ or src/.
    - All paths in .github/copilot-instructions.md → files exist.
-   - All paths in FinOps-Agent-MVP-Document-Pack.md → files exist.
+   - All paths in Optivue-Document-Pack.md → files exist.
    - Run: find docs/ -name "*.md" | xargs grep -l "\.md" to surface broken links.
 
-5. Verify Interview-Ready Completion Checklist (FinOps-Agent-MVP-Document-Pack.md):
+5. Verify Interview-Ready Completion Checklist (Optivue-Document-Pack.md):
    - All 17+ documents created and internally consistent.
    - Every FR (FR-1 to FR-7) mapped to at least one AWS doc or code sample.
    - Bedrock agent instructions defined (docs/03-design/02-bedrock-agent-instructions.md).
@@ -807,3 +807,4 @@ When FEATURE_EXECUTIVE_SCORECARDS=true:
 | 5 — Eval + Obs | 10–11 | prompts.json, run_eval.py, CloudWatch, kpi_service.py | Safety 100%, P95 ≤ 8s |
 | 6 — Pilot | 12 | README final, CHANGELOG, KPI snapshot | MVP Definition of Done |
 | 7 — Post-MVP | Optional | Feature-flagged expansions | Per-expansion exit criteria |
+

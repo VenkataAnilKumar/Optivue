@@ -1,7 +1,7 @@
-# Hiring Manager Summary: FinOps Agent MVP
+# Hiring Manager Summary: Optivue
 
 ## Candidate Project Snapshot
-I built an AWS-first FinOps Agent MVP that converts cloud cost insight into action. The product helps teams investigate anomalies, prioritize savings opportunities, and trigger approved remediation workflows with full traceability.
+I built an AWS-first Optivue that converts cloud cost insight into action. The product helps teams investigate anomalies, prioritize savings opportunities, and trigger approved remediation workflows with full traceability.
 
 ## Why this project matters
 Cloud cost optimization often breaks at the handoff between analysis and execution. Teams can identify issues, but action routing, ownership, and follow-through are usually manual and slow. This project solves that bottleneck with an end-to-end, human-in-the-loop workflow.
@@ -62,3 +62,4 @@ Cloud cost optimization often breaks at the handoff between analysis and executi
 - Architecture and contracts: docs/03-architecture-overview.md, docs/04-data-tool-contract.md
 - Execution and quality: docs/08-implementation-roadmap-phases.md, docs/09-sprint-plan.md, docs/07-test-evaluation-plan.md
 - Demo flow: docs/06-demo-script.md
+

@@ -1,4 +1,4 @@
-# Spoken Interview Scripts: FinOps Agent MVP
+# Spoken Interview Scripts: Optivue
 
 Two ready-to-speak scripts. Practice out loud. Time yourself. Aim for natural pacing — do not rush.
 
@@ -12,7 +12,7 @@ Two ready-to-speak scripts. Practice out loud. Time yourself. Aim for natural pa
 
 ---
 
-"I built a FinOps Agent MVP using AWS and Amazon Bedrock Agents.
+"I built a Optivue using AWS and Amazon Bedrock Agents.
 
 The problem I was solving is that FinOps teams can see cloud cost issues in dashboards, but the actual work of investigating anomalies, prioritizing fixes, and routing actions to engineers is still slow and manual. That gap between insight and action is where a lot of savings potential gets lost.
 
@@ -38,7 +38,7 @@ I documented the full product from PRD and architecture to sprint plan and test 
 
 ### Opening — Problem and Context (30 seconds)
 
-"I want to walk you through an end-to-end product I built called FinOps Agent. The core problem is that cloud cost optimization consistently breaks at the handoff between analysis and execution. Teams have dashboards that show spend anomalies and savings opportunities, but the actual steps — figuring out the root cause, identifying the right owner, creating a ticket, following up — are manual and slow. I built a Bedrock-powered agent that closes that loop."
+"I want to walk you through an end-to-end product I built called Optivue. The core problem is that cloud cost optimization consistently breaks at the handoff between analysis and execution. Teams have dashboards that show spend anomalies and savings opportunities, but the actual steps — figuring out the root cause, identifying the right owner, creating a ticket, following up — are manual and slow. I built a Bedrock-powered agent that closes that loop."
 
 ---
 
@@ -107,3 +107,4 @@ Happy to go deeper on any part — the agent architecture, ranking logic, safety
 - **Eye contact:** Look up when naming business outcomes. Look at notes when citing specific numbers.
 - **Backup:** If asked to shorten, cut Script B to just Opening + Core Capabilities + Architecture + Outcomes. Skip tradeoffs.
 - **If interrupted:** That is a good sign. Interviewers interrupt when they are interested. Answer the question fully, then offer to continue.
+
