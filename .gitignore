@@ -32,3 +32,6 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 
+# Local delivery prompt drafts
+docs/04-delivery/copilot-build-prompts.md
+

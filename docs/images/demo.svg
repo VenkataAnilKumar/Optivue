@@ -1,0 +1,284 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      * { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+
+      /* Fade-in keyframes */
+      @keyframes fadeIn  { from { opacity:0 } to { opacity:1 } }
+      @keyframes slideUp { from { opacity:0; transform:translateY(10px) } to { opacity:1; transform:translateY(0) } }
+      @keyframes blink   { 0%,100% { opacity:1 } 50% { opacity:0 } }
+      @keyframes typing  { from { width:0 } to { width:100% } }
+      @keyframes pulse   { 0%,100% { opacity:.6 } 50% { opacity:1 } }
+      @keyframes scanline{ 0% { transform:translateY(-100%) } 100% { transform:translateY(560px) } }
+      @keyframes glow    { 0%,100% { filter:drop-shadow(0 0 4px #00e5ff) } 50% { filter:drop-shadow(0 0 12px #00e5ff) } }
+
+      .win  { animation: fadeIn .4s ease forwards }
+      .up   { animation: slideUp .5s ease forwards }
+      .cur  { animation: blink 1s step-end infinite }
+
+      /* Delays */
+      .d0  { animation-delay:0s }
+      .d1  { animation-delay:.6s;  opacity:0 }
+      .d2  { animation-delay:1.2s; opacity:0 }
+      .d3  { animation-delay:1.8s; opacity:0 }
+      .d4  { animation-delay:2.4s; opacity:0 }
+      .d5  { animation-delay:3.0s; opacity:0 }
+      .d6  { animation-delay:3.6s; opacity:0 }
+      .d7  { animation-delay:4.2s; opacity:0 }
+      .d8  { animation-delay:4.8s; opacity:0 }
+      .d9  { animation-delay:5.4s; opacity:0 }
+      .d10 { animation-delay:6.0s; opacity:0 }
+      .d11 { animation-delay:6.6s; opacity:0 }
+      .d12 { animation-delay:7.2s; opacity:0 }
+    </style>
+
+    <!-- Gradient backgrounds -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity=".15"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity=".15"/>
+    </linearGradient>
+    <linearGradient id="p1grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity=".2"/>
+      <stop offset="100%" stop-color="#dc2626" stop-opacity=".05"/>
+    </linearGradient>
+    <linearGradient id="p2grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity=".2"/>
+      <stop offset="100%" stop-color="#d97706" stop-opacity=".05"/>
+    </linearGradient>
+    <linearGradient id="p3grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity=".15"/>
+      <stop offset="100%" stop-color="#2563eb" stop-opacity=".05"/>
+    </linearGradient>
+    <linearGradient id="approveGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="560" fill="url(#bg)" rx="12"/>
+
+  <!-- Subtle scanline effect -->
+  <rect width="900" height="2" fill="#ffffff" opacity=".02" rx="1">
+    <animateTransform attributeName="transform" type="translate" values="0,0;0,560" dur="8s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Top border glow -->
+  <rect width="900" height="2" fill="url(#headerGrad)" rx="1" opacity=".8"/>
+
+  <!-- === HEADER BAR === -->
+  <rect x="0" y="0" width="900" height="44" fill="url(#headerGrad)" rx="12"/>
+  <rect x="0" y="32" width="900" height="12" fill="url(#headerGrad)"/>
+
+  <!-- Window controls -->
+  <circle cx="24" cy="22" r="6" fill="#ff5f57"/>
+  <circle cx="44" cy="22" r="6" fill="#febc2e"/>
+  <circle cx="64" cy="22" r="6" fill="#28c840"/>
+
+  <!-- Product name -->
+  <text x="450" y="27" text-anchor="middle" fill="#00e5ff" font-size="13" font-weight="700" filter="url(#glow)" letter-spacing="3">OPTIVUE  ·  FinOps AI Agent</text>
+
+  <!-- Role badge -->
+  <rect x="800" y="12" width="84" height="20" rx="10" fill="#7c3aed" opacity=".7"/>
+  <text x="842" y="25" text-anchor="middle" fill="#e9d5ff" font-size="10">finops-analyst</text>
+
+  <!-- === LEFT PANEL — Chat === -->
+  <rect x="12" y="54" width="420" height="494" rx="8" fill="#111827" opacity=".9"/>
+  <rect x="12" y="54" width="420" height="30" rx="8" fill="#1f2937"/>
+  <rect x="12" y="72" width="420" height="12" fill="#1f2937"/>
+  <text x="22" y="73" fill="#6b7280" font-size="10">💬  Chat</text>
+
+  <!-- User message bubble - d1 -->
+  <g class="up d1">
+    <rect x="200" y="96" width="222" height="44" rx="10" fill="#1d4ed8" opacity=".8"/>
+    <text x="215" y="113" fill="#bfdbfe" font-size="10">Why did AWS costs spike</text>
+    <text x="215" y="127" fill="#bfdbfe" font-size="10">this week? 📊</text>
+    <text x="414" y="146" text-anchor="end" fill="#4b5563" font-size="9">you · just now</text>
+  </g>
+
+  <!-- Thinking indicator - d2 -->
+  <g class="up d2">
+    <rect x="22" y="152" width="120" height="24" rx="12" fill="#1f2937"/>
+    <text x="34" y="168" fill="#9ca3af" font-size="10">● ● ●  analyzing</text>
+  </g>
+
+  <!-- Agent response - d3 -->
+  <g class="up d3">
+    <rect x="22" y="188" width="395" height="110" rx="10" fill="#1f2937" stroke="#00e5ff" stroke-width=".5" stroke-opacity=".4"/>
+    <text x="32" y="205" fill="#00e5ff" font-size="10" font-weight="700">🔍  Cost Anomaly Detected</text>
+    <text x="32" y="222" fill="#d1fae5" font-size="10">EC2 spend ↑ 43% vs prior week</text>
+    <text x="32" y="237" fill="#d1fae5" font-size="10">Root cause: m5.4xlarge fleet in us-east-1</text>
+    <text x="32" y="252" fill="#d1fae5" font-size="10">Top driver: team/data-platform (untagged 38%)</text>
+    <text x="32" y="267" fill="#d1fae5" font-size="10">Impact: +$12,400 · Period: Apr 6–13 · ⚡ High severity</text>
+    <text x="32" y="282" fill="#6b7280" font-size="9">data_freshness: 2026-04-13T08:00:00Z</text>
+  </g>
+
+  <!-- Follow-up message - d4 -->
+  <g class="up d4">
+    <rect x="178" y="312" width="244" height="30" rx="10" fill="#1d4ed8" opacity=".8"/>
+    <text x="193" y="331" fill="#bfdbfe" font-size="10">Show me top savings opportunities</text>
+  </g>
+
+  <!-- Agent recs response - d5 -->
+  <g class="up d5">
+    <rect x="22" y="354" width="395" height="70" rx="10" fill="#1f2937" stroke="#10b981" stroke-width=".5" stroke-opacity=".5"/>
+    <text x="32" y="371" fill="#10b981" font-size="10" font-weight="700">✦  3 recommendations ranked by impact</text>
+    <text x="32" y="387" fill="#d1fae5" font-size="10">P1: Rightsize 14× m5.4xlarge → m5.xlarge</text>
+    <text x="32" y="401" fill="#d1fae5" font-size="10">P2: Purchase 1-yr Compute SP · P3: Tag cleanup</text>
+    <text x="32" y="415" fill="#6b7280" font-size="9">Estimated combined savings: $8,200/month</text>
+  </g>
+
+  <!-- Chat input -->
+  <rect x="22" y="496" width="390" height="34" rx="17" fill="#1f2937" stroke="#374151" stroke-width="1"/>
+  <text x="40" y="518" fill="#4b5563" font-size="10">Ask Optivue anything…</text>
+  <rect x="394" y="502" width="12" height="22" rx="2" fill="#00e5ff" opacity=".7">
+    <animate attributeName="opacity" values=".7;0;.7" dur="1.2s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- === RIGHT PANEL — Recommendations === -->
+  <rect x="444" y="54" width="444" height="494" rx="8" fill="#111827" opacity=".9"/>
+  <rect x="444" y="54" width="444" height="30" rx="8" fill="#1f2937"/>
+  <rect x="444" y="72" width="444" height="12" fill="#1f2937"/>
+  <text x="454" y="73" fill="#6b7280" font-size="10">✦  Recommendations  ·  Pending approval</text>
+
+  <!-- P1 Card - d6 -->
+  <g class="up d6">
+    <rect x="454" y="95" width="424" height="108" rx="8" fill="url(#p1grad)" stroke="#ef4444" stroke-width=".8" stroke-opacity=".5"/>
+    <rect x="454" y="95" width="6" height="108" rx="3" fill="#ef4444"/>
+
+    <!-- Badge -->
+    <rect x="468" y="103" width="22" height="16" rx="8" fill="#ef4444"/>
+    <text x="479" y="115" text-anchor="middle" fill="white" font-size="9" font-weight="700">P1</text>
+
+    <text x="498" y="115" fill="#f9fafb" font-size="11" font-weight="700">Rightsize EC2 Fleet  ·  14 instances</text>
+    <text x="468" y="132" fill="#9ca3af" font-size="10">m5.4xlarge → m5.xlarge  ·  data-platform team</text>
+
+    <!-- Savings -->
+    <text x="468" y="152" fill="#10b981" font-size="13" font-weight="700">$6,720 / mo</text>
+    <text x="555" y="152" fill="#6b7280" font-size="9">estimated savings</text>
+
+    <!-- Confidence bar -->
+    <text x="468" y="169" fill="#6b7280" font-size="9">Confidence</text>
+    <rect x="530" y="161" width="200" height="7" rx="3" fill="#374151"/>
+    <rect x="530" y="161" width="166" height="7" rx="3" fill="#10b981"/>
+    <text x="738" y="169" fill="#10b981" font-size="9">83%</text>
+
+    <!-- Approve button -->
+    <rect x="760" y="97" width="108" height="28" rx="14" fill="url(#approveGrad)"/>
+    <text x="814" y="115" text-anchor="middle" fill="white" font-size="10" font-weight="700">✓  Approve</text>
+
+    <text x="468" y="193" fill="#4b5563" font-size="9">effort: low  ·  risk: low  ·  score: 0.847  ·  needs_review: false</text>
+  </g>
+
+  <!-- P2 Card - d7 -->
+  <g class="up d7">
+    <rect x="454" y="213" width="424" height="86" rx="8" fill="url(#p2grad)" stroke="#f59e0b" stroke-width=".8" stroke-opacity=".5"/>
+    <rect x="454" y="213" width="6" height="86" rx="3" fill="#f59e0b"/>
+
+    <rect x="468" y="221" width="22" height="16" rx="8" fill="#f59e0b"/>
+    <text x="479" y="233" text-anchor="middle" fill="white" font-size="9" font-weight="700">P2</text>
+
+    <text x="498" y="233" fill="#f9fafb" font-size="11" font-weight="700">Purchase Compute Savings Plan  ·  1 year</text>
+    <text x="468" y="249" fill="#9ca3af" font-size="10">Covers baseline EC2 + Fargate  ·  Commitment: $1,200/mo</text>
+
+    <text x="468" y="270" fill="#fbbf24" font-size="13" font-weight="700">$1,080 / mo</text>
+    <text x="555" y="270" fill="#6b7280" font-size="9">estimated savings</text>
+
+    <text x="468" y="286" fill="#6b7280" font-size="9">confidence: 76%  ·  effort: medium  ·  risk: medium  ·  score: 0.612</text>
+
+    <rect x="760" y="215" width="108" height="28" rx="14" fill="#374151" stroke="#f59e0b" stroke-width=".8"/>
+    <text x="814" y="233" text-anchor="middle" fill="#f59e0b" font-size="10">Request Approval</text>
+  </g>
+
+  <!-- P3 Card - d8 -->
+  <g class="up d8">
+    <rect x="454" y="309" width="424" height="72" rx="8" fill="url(#p3grad)" stroke="#3b82f6" stroke-width=".8" stroke-opacity=".4"/>
+    <rect x="454" y="309" width="6" height="72" rx="3" fill="#3b82f6"/>
+
+    <rect x="468" y="317" width="22" height="16" rx="8" fill="#3b82f6"/>
+    <text x="479" y="329" text-anchor="middle" fill="white" font-size="9" font-weight="700">P3</text>
+
+    <text x="498" y="329" fill="#f9fafb" font-size="11" font-weight="700">Tag Compliance Remediation</text>
+    <text x="468" y="345" fill="#9ca3af" font-size="10">38% of EC2 missing cost-center tag  ·  Affects attribution accuracy</text>
+    <text x="468" y="368" fill="#6b7280" font-size="9">confidence: 91%  ·  needs_review: false  ·  score: 0.38  ·  effort: low</text>
+  </g>
+
+  <!-- Approval workflow animation - d9 -->
+  <g class="up d9">
+    <rect x="454" y="394" width="424" height="66" rx="8" fill="#1f2937" stroke="#10b981" stroke-width="1" stroke-opacity=".6"/>
+    <text x="464" y="410" fill="#10b981" font-size="10" font-weight="700">✅  Approval Confirmed — P1 Action Executing</text>
+    <text x="464" y="426" fill="#d1fae5" font-size="10">Token: apr-8f2a ·  Expires: 4h  ·  Approver: you</text>
+
+    <!-- Step Functions progress -->
+    <text x="464" y="444" fill="#6b7280" font-size="9">ValidateApproval</text>
+    <text x="554" y="444" fill="#10b981" font-size="9">✓</text>
+    <text x="570" y="444" fill="#6b7280" font-size="9">CreateTicket</text>
+    <text x="636" y="444" fill="#10b981" font-size="9">✓</text>
+    <text x="652" y="444" fill="#6b7280" font-size="9">NotifyOwner</text>
+    <text x="720" y="444" fill="#10b981" font-size="9">✓</text>
+    <text x="736" y="444" fill="#6b7280" font-size="9">UpdateState</text>
+    <text x="806" y="444" fill="#fbbf24" font-size="9">⟳</text>
+
+    <line x1="549" y1="439" x2="554" y2="439" stroke="#374151" stroke-width="1"/>
+    <line x1="630" y1="439" x2="636" y2="439" stroke="#374151" stroke-width="1"/>
+    <line x1="715" y1="439" x2="720" y2="439" stroke="#374151" stroke-width="1"/>
+  </g>
+
+  <!-- Notifications row - d10 -->
+  <g class="up d10">
+    <rect x="454" y="470" width="206" height="48" rx="8" fill="#1f2937" stroke="#374151" stroke-width=".5"/>
+    <text x="464" y="487" fill="#6b7280" font-size="9">Jira Ticket Created</text>
+    <text x="464" y="500" fill="#60a5fa" font-size="10" font-weight="700">FINOPS-2847 🔗</text>
+    <text x="464" y="513" fill="#4b5563" font-size="9">Assigned → @data-platform</text>
+
+    <rect x="670" y="470" width="208" height="48" rx="8" fill="#1f2937" stroke="#374151" stroke-width=".5"/>
+    <text x="680" y="487" fill="#6b7280" font-size="9">Slack Notified</text>
+    <text x="680" y="500" fill="#a78bfa" font-size="10" font-weight="700">#finops-actions 🔔</text>
+    <text x="680" y="513" fill="#4b5563" font-size="9">Owner: @alice · $6,720/mo</text>
+  </g>
+
+  <!-- KPI strip - d11 -->
+  <g class="up d11">
+    <!-- KPI bar across bottom -->
+    <rect x="12" y="530" width="876" height="22" rx="6" fill="#1f2937" opacity=".8"/>
+
+    <text x="30"  y="545" fill="#6b7280" font-size="9">KPI Snapshot</text>
+    <text x="110" y="545" fill="#374151" font-size="9">│</text>
+
+    <text x="120" y="545" fill="#9ca3af" font-size="9">Acceptance Rate</text>
+    <text x="215" y="545" fill="#10b981" font-size="9" font-weight="700">34%</text>
+
+    <text x="248" y="545" fill="#374151" font-size="9">│</text>
+    <text x="258" y="545" fill="#9ca3af" font-size="9">Realized Savings</text>
+    <text x="353" y="545" fill="#10b981" font-size="9" font-weight="700">$42,100/mo</text>
+
+    <text x="406" y="545" fill="#374151" font-size="9">│</text>
+    <text x="416" y="545" fill="#9ca3af" font-size="9">P95 Latency</text>
+    <text x="484" y="545" fill="#10b981" font-size="9" font-weight="700">4.2s</text>
+
+    <text x="510" y="545" fill="#374151" font-size="9">│</text>
+    <text x="520" y="545" fill="#9ca3af" font-size="9">Safety Violations</text>
+    <text x="612" y="545" fill="#10b981" font-size="9" font-weight="700">0</text>
+
+    <text x="628" y="545" fill="#374151" font-size="9">│</text>
+    <text x="638" y="545" fill="#9ca3af" font-size="9">DEMO_MODE</text>
+    <text x="704" y="545" fill="#fbbf24" font-size="9" font-weight="700">false</text>
+
+    <text x="734" y="545" fill="#374151" font-size="9">│</text>
+    <text x="744" y="545" fill="#9ca3af" font-size="9">Agents</text>
+    <text x="782" y="545" fill="#00e5ff" font-size="9" font-weight="700">3 ● active</text>
+
+    <text x="836" y="545" fill="#374151" font-size="9">│</text>
+    <text x="846" y="545" fill="#6b7280" font-size="9">v0.1.0</text>
+  </g>
+</svg>
