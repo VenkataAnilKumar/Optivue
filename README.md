@@ -79,32 +79,13 @@ Optivue: ✅ Approval token validated. Executing...
 
 ## Architecture
 
-```
-Browser (Next.js 15 + Tailwind)
-        │
-        ▼
-Amazon API Gateway  ──►  FastAPI on AWS Lambda  ──►  Amazon Cognito (4 roles)
-                                │
-               ┌────────────────┴─────────────────┐
-               ▼                                   ▼
-    Amazon Bedrock Agents                   DynamoDB (4 tables)
-    ┌─────────────────────┐                finops-recommendations
-    │   finops-supervisor  │                finops-approvals
-    │   ├── cost-analysis  │◄── Athena      finops-action-history
-    │   ├── optimization   │◄── Compute Optimizer  finops-kpi-metrics
-    │   └── governance     │◄── IAM · Budgets
-    └─────────────────────┘
-               │
-               ▼
-    AWS Step Functions
-    ValidateApproval → CreateTicket → NotifyOwner → UpdateActionState
-               │                           │
-               ▼                           ▼
-          Jira REST API v3           Slack / Teams webhook
-```
+<div align="center">
+<img src="docs/images/architecture-aws.svg" alt="Optivue AWS Architecture" width="1100"/>
+</div>
 
 **Data pipeline:** AWS Data Exports / CUR → S3 → AWS Glue → Amazon Athena  
-**Infrastructure:** 6 CDK stacks — fully reproducible, zero console changes
+**Infrastructure:** 6 CDK stacks — fully reproducible, zero console changes  
+**Full diagram:** [`docs/images/architecture-aws.svg`](docs/images/architecture-aws.svg)
 
 ---
 
