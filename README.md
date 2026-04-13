@@ -83,17 +83,16 @@ Optivue: ✅ Approval token validated. Executing...
 
 ## Features at a Glance
 
-✅ **Natural language cost queries** — "Show me spending by region" → AI queries Athena, returns breakdown  
-✅ **Real-time anomaly explanation** — Cost spike detected → root cause + likely driver + owner candidate in <8s  
-✅ **Ranked savings opportunities** — Recommendations scored by savings × confidence × effort × risk, with P1/P2/P3 tiers  
-✅ **Approval-gated action workflow** — Every mutation (Jira ticket, Slack message, resource change) requires explicit approval token  
-✅ **Dual-approval for production** — Rightsizing and commitments require two independent approvers (engineering-manager + finops-analyst)  
-✅ **Role-based access control** — 4 Cognito groups: finops-analyst (full), engineering-manager, finance (read-only), leadership (exec dashboard)  
-✅ **Policy-blocked production deletions** — System returns `policy_blocked` if anyone attempts autonomous production resource deletion — hard-coded, non-negotiable  
-✅ **Confidence-gated recommendations** — Auto-route at confidence ≥ 70%; below that, flags as `needs_review: true`  
-✅ **Grounded responses** — Every cost figure backed by Cost Explorer, Athena, or Compute Optimizer API calls. Zero hallucinations. Ever.  
-✅ **Full audit trail** — Every approval, ticket creation, and action execution logged to DynamoDB with timestamp and actor  
-✅ **24/7 demo mode** — `DEMO_MODE=true` runs end-to-end with fixture data — perfect for portfolio demos, interviews, or local dev  
+✅ **Natural language cost queries** — "Show me top cost drivers" → AI investigates your AWS account, returns ranked insights  
+✅ **Real-time anomaly root cause** — Cost spike? AI pinpoints root cause, likely drivers, and owner in <8s  
+✅ **Ranked recommendations** — P1/P2/P3 scored by impact × confidence × risk, auto-routed at ≥70% confidence  
+✅ **Approval-gated action workflow** — Every action (Jira + Slack) requires explicit human approval token  
+✅ **Dual-approval for production** — Rightsizing and commitments need two independent approvals (EM + finops-analyst)  
+✅ **Production deletions blocked** — System returns `policy_blocked` on any production deletion attempt — non-negotiable  
+✅ **Grounded responses** — Every cost figure from live Cost Explorer / Athena / Compute Optimizer APIs. Zero hallucinations  
+✅ **Role-based access control** — 4 Cognito groups with scoped dashboards and output filtering  
+✅ **Full audit trail** — Every approval, ticket, and action logged to DynamoDB with actor + timestamp  
+✅ **Demo mode** — `DEMO_MODE=true` runs end-to-end with fixture data — great for local dev and interviews  
 
 ---
 
