@@ -52,6 +52,22 @@ def test_recommendations_endpoint_exists():
     assert resp.status_code in (200, 401, 403)
 
 
+def test_recommendations_endpoint_returns_valid_shape():
+    """Validate that the recommendations endpoint response matches the API contract."""
+    resp = client.get("/recommendations/")
+    assert resp.status_code in (200, 401, 403)
+    if resp.status_code == 200:
+        body = resp.json()
+        assert isinstance(body, dict), "Response body must be a JSON object"
+        assert "recommendations" in body or "items" in body or "response" in body, (
+            "Response must contain a 'recommendations', 'items', or 'response' key"
+        )
+        total = body.get("total")
+        assert total is None or isinstance(total, int), (
+            "'total' field must be an integer when present"
+        )
+
+
 def test_kpi_endpoint_exists():
     resp = client.get("/kpi/")
     assert resp.status_code in (200, 401, 403)
