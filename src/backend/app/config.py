@@ -28,22 +28,27 @@ class Settings(BaseSettings):
 
     @property
     def recommendations_table_name(self) -> str:
+        """Return the DynamoDB table name for cost recommendations."""
         return self.dynamodb_recommendations_table
 
     @property
     def approvals_table_name(self) -> str:
+        """Return the DynamoDB table name for approval token records."""
         return self.dynamodb_approvals_table
 
     @property
     def action_history_table_name(self) -> str:
+        """Return the DynamoDB table name for completed/failed action audit trail."""
         return self.dynamodb_action_history_table
 
     @property
     def kpi_table_name(self) -> str:
+        """Return the DynamoDB table name for weekly/monthly KPI snapshots."""
         return self.dynamodb_kpi_table
 
     @property
     def confidence_threshold(self) -> float:
+        """Return the minimum confidence score required for auto-routing recommendations."""
         return self.recommendation_confidence_threshold
 
 
